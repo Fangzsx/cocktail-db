@@ -63,16 +63,20 @@
 
 
                 <ImageView
+                    android:id="@+id/iv_recommended"
                     android:layout_width="match_parent"
+                    android:scaleType="centerCrop"
                     android:layout_height="@dimen/_150sdp"/>
                 <TextView
+                    android:id="@+id/tv_recommended"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_height="@dimen/_32sdp"
                     android:textSize="@dimen/_10sdp"
                     android:fontFamily="@font/oneplussans"
                     android:textStyle="bold"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
                     android:textColor="@color/black"
+                    android:paddingBottom="@dimen/_10sdp"
                     android:text="Cocktail Name"/>
 
             </io.devlight.xtreeivi.cornercutlinearlayout.CornerCutLinearLayout>

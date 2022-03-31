@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/layout/activity_main.xml" value="0.15534420289855072" />
+        <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/layout/fragment_home.xml" value="0.4365256124721604" />
+        <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/layout/popular_item.xml" value="0.25" />
         <entry key="..\:/Users/jygrz/retrofitroom/app/src/main/res/font/font.xml" value="0.23020833333333332" />
         <entry key="..\:/Users/jygrz/retrofitroom/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/jygrz/retrofitroom/app/src/main/res/layout/fragment_about.xml" value="0.2" />
@@ -13,7 +16,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
