@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?colorOnSecondary"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.HomeFragment">
+
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Cocktail"
+        android:fontFamily="@font/oneplussans"
+        android:textColor="?colorOnPrimary"
+        android:textStyle="bold"
+        android:textSize="@dimen/_20ssp"
+        android:layout_margin="@dimen/_10sdp"/>
+
+    <ImageView
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/tv_header"
+        app:layout_constraintBottom_toBottomOf="@id/tv_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:src="@drawable/settings"
+        app:tint="?colorOnPrimary"/>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <io.devlight.xtreeivi.cornercutlinearlayout.CornerCutLinearLayout
+                android:id="@+id/recommendation_cc"
+                android:layout_width="@dimen/_160sdp"
+                android:layout_height="@dimen/_200sdp"
+                android:background="#FFFFFF"
+                android:orientation="vertical"
+                app:ccll_corner_cut_flag="start_top|end_bottom"
+                app:ccll_corner_cut_size="24dp"
+                app:ccll_corner_cut_type="oval"
+                app:ccll_child_corner_cut_type="oval_inverse"
+                app:ccll_custom_shadow_color="?colorSecondary"
+                app:ccll_custom_shadow_radius="16dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/oneplussans"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/black"
+                    android:text="Cocktail Name"/>
+
+            </io.devlight.xtreeivi.cornercutlinearlayout.CornerCutLinearLayout>
+
+            <TextView
+                android:id="@+id/tv_recommendation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="-90"
+                android:text="Recommendation"
+                android:fontFamily="@font/oneplussans"
+                android:textSize="@dimen/_15ssp"
+                android:textColor="?colorOnPrimary"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/recommendation_cc"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/recommendation_cc" />
+
+            <ImageView
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_12sdp"
+                app:layout_constraintTop_toTopOf="@id/recommendation_cc"
+                app:layout_constraintEnd_toStartOf="@id/recommendation_cc"
+                app:layout_constraintBottom_toTopOf="@id/tv_recommendation"
+                android:rotation="-90"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:src="@drawable/cocktail"
+                app:tint="?colorOnPrimary"/>
+
+            <TextView
+                android:id="@+id/tv_most_popular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oneplussans"
+                android:text="Most Popular"
+                android:textSize="@dimen/_15ssp"
+                android:textColor="?colorOnPrimary"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recommendation_cc"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_most_popular"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_200sdp"
+                app:layout_constraintTop_toBottomOf="@id/tv_most_popular"
+                app:layout_constraintStart_toStartOf="@id/tv_most_popular"/>
+
+            <TextView
+                android:id="@+id/tv_filter_glass_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/rv_most_popular"
+                app:layout_constraintStart_toStartOf="@id/tv_most_popular"
+                android:text="Filter by Glass Type"
+                android:textColor="?colorOnPrimary"
+                android:fontFamily="@font/oneplussans"
+                android:textSize="@dimen/_15ssp"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="testnames">
+        <item>Item1</item>
+        <item>Item2</item>
+        <item>Item3</item>
+    </string-array>
+
+    <integer-array name="images">
+        <item>@drawable/drink1</item>
+        <item>@drawable/drink2</item>
+        <item>@drawable/drink3</item>
+    </integer-array>
+
+    <integer-array name="colors">
+        <item>@color/redStart</item>
+        <item>@color/redEnd</item>
+        <item>@color/blueStart</item>
+        <item>@color/blueEnd</item>
+        <item>@color/greenStart</item>
+        <item>@color/greenEnd</item>
+
+    </integer-array>
+
+
+</resources>
