@@ -38,7 +38,10 @@ class PopularAdapter : RecyclerView.Adapter<PopularAdapter.DrinkViewHolder>() {
         val drink = differ.currentList[position]
         holder.binding.apply {
             tvPopularName.text = drink.strDrink
-            ivPopular.load(drink.strDrinkThumb)
+            ivPopular.load(drink.strDrinkThumb){
+                crossfade(true)
+                crossfade(1000)
+            }
         }
 
     }

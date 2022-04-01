@@ -24,16 +24,24 @@ class HomeFragmentViewModel : ViewModel() {
     private val TAG = "HomeFragmentViewModel"
 
     fun getRandomCocktail() = viewModelScope.launch {
-        try{
-            val response = RetrofitInstance.cocktailApi.getRandomCocktail()
-            if(response.isSuccessful) {
-                response.body()?.let {
-                    _randomCocktail.postValue(it.drinks[0])
-                }
-            }
+        val response = try{
+            RetrofitInstance.cocktailApi.getRandomCocktail()
         }catch (e : HttpException){
-            Log.i("test", e.message.toString())
+            Log.e(TAG, "HTTP EXCEPTION: unexpected response")
+            return@launch
+        }catch (e : IOException){
+            Log.e(TAG, "No internet connection error.")
+            return@launch
         }
+
+        if(response.isSuccessful && response.body() != null){
+            response.body()?.let { randomDrinkResponse ->
+                _randomCocktail.postValue(randomDrinkResponse.drinks[0])
+            }
+        }else{
+            Log.e(TAG, "Response not successful")
+        }
+
     }
 
     fun getPopularAlcoholicDrinks() = viewModelScope.launch {
