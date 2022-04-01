@@ -4,6 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+
     <io.devlight.xtreeivi.cornercutlinearlayout.CornerCutLinearLayout
         android:id="@+id/recommendation_cc"
         android:layout_width="@dimen/_160sdp"
@@ -22,15 +24,21 @@
 
 
         <ImageView
+            android:id="@+id/iv_popular"
             android:layout_width="match_parent"
+            android:scaleType="centerCrop"
             android:layout_height="@dimen/_150sdp"/>
         <TextView
+            android:id="@+id/tv_popular_name"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:paddingBottom="@dimen/_10sdp"
             android:textSize="@dimen/_10sdp"
             android:fontFamily="@font/oneplussans"
+            android:singleLine="true"
+            android:ellipsize="marquee"
             android:textStyle="bold"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:textColor="@color/black"
             android:text="Cocktail Name"/>
 

@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
+import com.fangzsx.retrofit_room.PopularAdapter
 import com.fangzsx.retrofit_room.databinding.FragmentHomeBinding
 import com.fangzsx.retrofit_room.model.Drink
 import com.fangzsx.retrofit_room.viewmodels.HomeFragmentViewModel
@@ -16,10 +18,12 @@ import com.fangzsx.retrofit_room.viewmodels.HomeFragmentViewModel
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var homeFragmentVM : HomeFragmentViewModel
+    private lateinit var popularAdapter : PopularAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         homeFragmentVM = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
+        popularAdapter = PopularAdapter()
     }
 
 
@@ -40,8 +44,13 @@ class HomeFragment : Fragment() {
         }
 
         homeFragmentVM.getPopularAlcoholicDrinks()
-        homeFragmentVM.popularAlcoholic.observe(viewLifecycleOwner){
-            
+        homeFragmentVM.popularAlcoholic.observe(viewLifecycleOwner){ drinks ->
+            popularAdapter.differ.submitList(drinks)
+        }
+
+        binding.rvMostPopular.apply {
+            adapter = popularAdapter
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         }
         
     }

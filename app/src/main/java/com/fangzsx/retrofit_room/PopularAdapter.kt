@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.fangzsx.retrofit_room.databinding.PopularItemBinding
 import com.fangzsx.retrofit_room.model.Drink
 
@@ -35,6 +36,10 @@ class PopularAdapter : RecyclerView.Adapter<PopularAdapter.DrinkViewHolder>() {
 
     override fun onBindViewHolder(holder: DrinkViewHolder, position: Int) {
         val drink = differ.currentList[position]
+        holder.binding.apply {
+            tvPopularName.text = drink.strDrink
+            ivPopular.load(drink.strDrinkThumb)
+        }
 
     }
 
