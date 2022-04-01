@@ -1,7 +1,6 @@
 package com.fangzsx.retrofit_room.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
-import com.fangzsx.retrofit_room.PopularAdapter
+import com.fangzsx.retrofit_room.adapters.PopularAdapter
 import com.fangzsx.retrofit_room.databinding.FragmentHomeBinding
 import com.fangzsx.retrofit_room.model.Drink
 import com.fangzsx.retrofit_room.viewmodels.HomeFragmentViewModel

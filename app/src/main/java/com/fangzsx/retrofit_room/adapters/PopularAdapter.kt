@@ -1,4 +1,4 @@
-package com.fangzsx.retrofit_room
+package com.fangzsx.retrofit_room.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -40,7 +40,7 @@ class PopularAdapter : RecyclerView.Adapter<PopularAdapter.DrinkViewHolder>() {
             tvPopularName.text = drink.strDrink
             ivPopular.load(drink.strDrinkThumb){
                 crossfade(true)
-                crossfade(1000)
+                crossfade(2000)
             }
         }
 
