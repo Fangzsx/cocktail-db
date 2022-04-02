@@ -39,7 +39,10 @@ class IngredientAdapter : RecyclerView.Adapter<IngredientAdapter.ViewHolder>() {
 
         holder.binding.apply {
             tvIngredient.text = ingredient.strIngredient1
-            ivIngredient.load("https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Medium.png")
+            ivIngredient.load("https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Medium.png"){
+                crossfade(true)
+                crossfade(1000)
+            }
         }
 
 
