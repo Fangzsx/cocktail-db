@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
+import com.fangzsx.retrofit_room.adapters.IngredientAdapter
 import com.fangzsx.retrofit_room.adapters.PopularAdapter
 import com.fangzsx.retrofit_room.databinding.FragmentHomeBinding
 import com.fangzsx.retrofit_room.model.Drink
@@ -18,11 +20,13 @@ class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var homeFragmentVM : HomeFragmentViewModel
     private lateinit var popularAdapter : PopularAdapter
+    private lateinit var ingredientAdapter : IngredientAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         homeFragmentVM = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
         popularAdapter = PopularAdapter()
+        ingredientAdapter = IngredientAdapter()
     }
 
 
@@ -50,6 +54,16 @@ class HomeFragment : Fragment() {
         binding.rvMostPopular.apply {
             adapter = popularAdapter
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        }
+
+        homeFragmentVM.getIngredients()
+        homeFragmentVM.ingredients.observe(viewLifecycleOwner){ ingredients ->
+            ingredientAdapter.differ.submitList(ingredients)
+        }
+
+        binding.rvIngredients.apply {
+            adapter = ingredientAdapter
+            layoutManager = GridLayoutManager(activity, 4, GridLayoutManager.HORIZONTAL, false)
         }
         
     }

@@ -21,6 +21,9 @@ class HomeFragmentViewModel : ViewModel() {
     private val _popularAlcoholic : MutableLiveData<List<Drink>> = MutableLiveData()
     val popularAlcoholic : LiveData<List<Drink>> = _popularAlcoholic
 
+    private val _ingredients : MutableLiveData<List<Drink>> = MutableLiveData()
+    val ingredients : LiveData<List<Drink>> = _ingredients
+
     private val TAG = "HomeFragmentViewModel"
 
     fun getRandomCocktail() = viewModelScope.launch {
@@ -30,7 +33,7 @@ class HomeFragmentViewModel : ViewModel() {
             Log.e(TAG, "HTTP EXCEPTION: unexpected response")
             return@launch
         }catch (e : IOException){
-            Log.e(TAG, "No internet connection error.")
+            Log.e(TAG, "No internet connection")
             return@launch
         }
 
@@ -48,7 +51,7 @@ class HomeFragmentViewModel : ViewModel() {
         val response = try{
             RetrofitInstance.cocktailApi.getAlcoholic()
         }catch (e : IOException){
-            Log.e(TAG, "No internet connection error.")
+            Log.e(TAG, "No internet connection")
             return@launch
         }catch (e : HttpException){
             Log.e(TAG, "HTTP EXCEPTION: unexpected response")
@@ -62,6 +65,27 @@ class HomeFragmentViewModel : ViewModel() {
         }else{
             Log.e(TAG, "Response not successful")
         }
+    }
+
+    fun getIngredients() = viewModelScope.launch {
+        val response = try{
+            RetrofitInstance.cocktailApi.getListOfIngredients()
+        }catch (e : IOException){
+            Log.e(TAG, "No internet connection")
+            return@launch
+        }catch (e : HttpException){
+            Log.e(TAG, "HTTP EXCEPTION: unexpected response")
+            return@launch
+        }
+
+        if(response.isSuccessful && response.body() != null){
+            response.body()?.let { listOfIngredients ->
+                _ingredients.postValue(listOfIngredients.drinks)
+            }
+        }else{
+            Log.e(TAG, "Response not successful")
+        }
+
     }
 
 }
