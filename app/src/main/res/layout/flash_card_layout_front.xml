@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <io.devlight.xtreeivi.cornercutlinearlayout.CornerCutLinearLayout
+        android:id="@+id/recommendation_cc"
         android:layout_width="@dimen/_80sdp"
         android:layout_height="@dimen/_100sdp"
         android:background="#FFFFFF"
@@ -21,21 +22,19 @@
 
 
         <ImageView
+            android:id="@+id/iv_flip_ingredient"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_60sdp"
-            android:padding="@dimen/_10sdp"
-            android:src="@drawable/cocktail"
-            app:tint="?colorPrimary"
-            android:scaleType="fitCenter" />
+            android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/tv_flip_ingredient"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_21sdp"
             android:textSize="@dimen/_4sdp"
             android:fontFamily="@font/oneplussans"
             android:textStyle="bold"
             android:gravity="center"
+            android:text="?????"
             android:paddingBottom="@dimen/_10sdp"
             android:textColor="@color/black"/>
 
