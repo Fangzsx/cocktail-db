@@ -14,12 +14,12 @@
             android:id="@+id/cl_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="?colorSecondary"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             app:expandedTitleTextColor="@color/white"
             app:collapsedTitleTextColor="@color/white"
-            app:expandedTitleTextAppearance="@style/Toolbar.TitleText"
-            app:collapsedTitleTextAppearance="@style/Toolbar.TitleText">
+            app:contentScrim="?colorOnSecondary"
+            app:expandedTitleTextAppearance="@style/MyExpandedTitle"
+            app:collapsedTitleTextAppearance="@style/MyCollapsedTitle">
             <ImageView
                 android:id="@+id/iv_cocktail"
                 android:layout_width="match_parent"
@@ -39,22 +39,41 @@
         app:layout_anchor="@id/cl_toolbar"
         app:layout_anchorGravity="bottom|end"
         android:layout_marginEnd="@dimen/_10sdp"
-        app:tint="@color/heartRed"
+        app:tint="#FF0000"
         android:src="@drawable/favorite"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/card_top_end_cut_bg"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_10sdp">
+        <TextView
+            android:id="@+id/tv_ingredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="INGREDIENTS"
+            android:textStyle="bold"
+            android:fontFamily="@font/oneplussans"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="?colorOnPrimary" />
 
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_cocktail_ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?colorPrimary"
+                app:layout_constraintTop_toBottomOf="@id/tv_ingredient"
+                app:layout_constraintStart_toStartOf="@id/tv_ingredient"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        
+
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

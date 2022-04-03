@@ -73,6 +73,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
-    //stick bubble
-    implementation 'com.github.JonathandelaSen:SideBubbles:0.0.7'
+    //card flip
+    implementation 'com.wajahatkarim:EasyFlipView:3.0.3'
+
 }
