@@ -34,7 +34,7 @@
             android:fontFamily="@font/oneplussans"
             android:textStyle="bold"
             android:gravity="center"
-            android:text="?????"
+            android:text="\????"
             android:paddingBottom="@dimen/_10sdp"
             android:textColor="@color/black"/>
 
