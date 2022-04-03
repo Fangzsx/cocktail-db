@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.fangzsx.retrofit_room"
-        minSdk 21
+        minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -73,6 +73,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
-    //checkbox
-    implementation 'com.xeoh.android:checkboxgroup:1.0.1'
+    //stick bubble
+    implementation 'com.github.JonathandelaSen:SideBubbles:0.0.7'
 }

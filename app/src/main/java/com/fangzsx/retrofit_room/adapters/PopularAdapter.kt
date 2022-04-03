@@ -11,6 +11,8 @@ import com.fangzsx.retrofit_room.model.Drink
 
 class PopularAdapter : RecyclerView.Adapter<PopularAdapter.DrinkViewHolder>() {
 
+    var onItemClick : ((Drink) -> Unit)? = null
+
     inner class DrinkViewHolder(val binding : PopularItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val differCallback = object : DiffUtil.ItemCallback<Drink>(){
@@ -42,6 +44,10 @@ class PopularAdapter : RecyclerView.Adapter<PopularAdapter.DrinkViewHolder>() {
                 crossfade(true)
                 crossfade(2000)
             }
+        }
+
+        holder.itemView.setOnClickListener {
+            onItemClick!!.invoke(drink)
         }
 
     }

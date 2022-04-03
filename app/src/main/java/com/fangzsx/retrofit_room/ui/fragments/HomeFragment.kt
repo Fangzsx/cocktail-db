@@ -1,5 +1,6 @@
 package com.fangzsx.retrofit_room.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
+import com.fangzsx.retrofit_room.R
 import com.fangzsx.retrofit_room.adapters.IngredientAdapter
 import com.fangzsx.retrofit_room.adapters.PopularAdapter
 import com.fangzsx.retrofit_room.databinding.FragmentHomeBinding
 import com.fangzsx.retrofit_room.model.Drink
+import com.fangzsx.retrofit_room.ui.activities.CocktailActivity
 import com.fangzsx.retrofit_room.viewmodels.HomeFragmentViewModel
 
 
@@ -56,6 +59,13 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         }
 
+        popularAdapter.onItemClick = { drink ->
+            Intent(activity, CocktailActivity::class.java).apply {
+                putExtra("ID", drink.idDrink)
+                startActivity(this)
+            }
+        }
+
         homeFragmentVM.getIngredients()
         homeFragmentVM.ingredients.observe(viewLifecycleOwner){ ingredients ->
             ingredientAdapter.differ.submitList(ingredients)
@@ -65,7 +75,7 @@ class HomeFragment : Fragment() {
             adapter = ingredientAdapter
             layoutManager = GridLayoutManager(activity, 4, GridLayoutManager.HORIZONTAL, false)
         }
-        
+
     }
 
     private fun setRecommendedDrink(drink: Drink) {

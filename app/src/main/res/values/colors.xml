@@ -17,6 +17,7 @@
     <color name="blueEnd">#3982EF</color>
     <color name="greenStart">#2EC10E</color>
     <color name="greenEnd">#449F35</color>
+    <color name="heartRed">#F44336</color>
 
 
 </resources>
