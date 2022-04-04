@@ -14,9 +14,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <include layout="@layout/flash_card_layout_back"/>
+        <include
+            android:id="@+id/back"
+            layout="@layout/flash_card_layout_back"/>
 
-        <include layout="@layout/flash_card_layout_front"/>
+        <include
+            android:id="@+id/front"
+            layout="@layout/flash_card_layout_front"/>
 
 
     </com.wajahatkarim3.easyflipview.EasyFlipView>

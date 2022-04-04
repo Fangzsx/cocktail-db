@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import coil.load
+import com.fangzsx.retrofit_room.adapters.CocktailIngredientsAdapter
 import com.fangzsx.retrofit_room.databinding.ActivityCocktailBinding
 import com.fangzsx.retrofit_room.model.Drink
 import com.fangzsx.retrofit_room.viewmodels.CocktailActivityViewModel
@@ -13,10 +15,14 @@ class CocktailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityCocktailBinding
     private lateinit var cocktailVM : CocktailActivityViewModel
 
+    private lateinit var cocktailIngredientAdapter : CocktailIngredientsAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCocktailBinding.inflate(layoutInflater)
         cocktailVM = ViewModelProvider(this).get(CocktailActivityViewModel::class.java)
+        cocktailIngredientAdapter = CocktailIngredientsAdapter()
+
         setContentView(binding.root)
 
         val id = intent.getStringExtra("ID")
@@ -31,6 +37,13 @@ class CocktailActivity : AppCompatActivity() {
 
             val ingredientList = getIngredientList(drink)
             val measurements = getMeasurements(drink)
+
+            cocktailIngredientAdapter.submitList(ingredientList)
+
+            binding.rvCocktailIngredients.apply{
+                adapter = cocktailIngredientAdapter
+                layoutManager = GridLayoutManager(this@CocktailActivity, 4, GridLayoutManager.VERTICAL, false)
+            }
 
             ingredientList.forEach { ingredient ->
                 measurements.forEach { measurements ->
