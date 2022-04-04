@@ -32,9 +32,6 @@ class CocktailActivity : AppCompatActivity() {
             val ingredientList = getIngredientList(drink)
             val measurements = getMeasurements(drink)
 
-            Log.d("debug", ingredientList.toString())
-            Log.d("debug", measurements.toString())
-
             ingredientList.forEach { ingredient ->
                 measurements.forEach { measurements ->
                     Log.d("test", "$ingredient - $measurements")
