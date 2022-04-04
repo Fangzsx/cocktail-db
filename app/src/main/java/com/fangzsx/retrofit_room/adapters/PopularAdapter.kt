@@ -1,5 +1,6 @@
 package com.fangzsx.retrofit_room.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -49,8 +50,8 @@ class PopularAdapter : RecyclerView.Adapter<PopularAdapter.DrinkViewHolder>() {
         holder.itemView.setOnClickListener {
             onItemClick!!.invoke(drink)
         }
-
     }
+
 
     override fun getItemCount(): Int {
         return differ.currentList.size

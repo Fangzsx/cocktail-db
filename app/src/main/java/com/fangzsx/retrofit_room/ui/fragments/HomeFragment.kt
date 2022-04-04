@@ -2,15 +2,16 @@ package com.fangzsx.retrofit_room.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
-import com.fangzsx.retrofit_room.R
 import com.fangzsx.retrofit_room.adapters.IngredientAdapter
 import com.fangzsx.retrofit_room.adapters.PopularAdapter
 import com.fangzsx.retrofit_room.databinding.FragmentHomeBinding
@@ -36,7 +37,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -60,6 +61,7 @@ class HomeFragment : Fragment() {
         }
 
         popularAdapter.onItemClick = { drink ->
+
             Intent(activity, CocktailActivity::class.java).apply {
                 putExtra("ID", drink.idDrink)
                 startActivity(this)

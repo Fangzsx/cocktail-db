@@ -75,5 +75,6 @@ dependencies {
 
     //card flip
     implementation 'com.wajahatkarim:EasyFlipView:3.0.3'
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.10"
 
 }
