@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.fangzsx.retrofit_room.databinding.ActivityCocktailBinding
+import com.fangzsx.retrofit_room.model.Drink
 import com.fangzsx.retrofit_room.viewmodels.CocktailActivityViewModel
 
 class CocktailActivity : AppCompatActivity() {
@@ -28,29 +29,68 @@ class CocktailActivity : AppCompatActivity() {
             binding.clToolbar.title = drink.strDrink
 
 
-            val list : MutableList<String?> = arrayListOf(
-                drink.strIngredient1,
-                drink.strIngredient2,
-                drink.strIngredient3,
-                drink.strIngredient4,
-                drink.strIngredient5,
-                drink.strIngredient6,
-                drink.strIngredient7,
-                drink.strIngredient8,
-                drink.strIngredient9,
-                drink.strIngredient10,
-                drink.strIngredient11,
-                drink.strIngredient12,
-                drink.strIngredient13,
-                drink.strIngredient14,
-                drink.strIngredient15,
-            )
+            val ingredientList = getIngredientList(drink)
+            val measurements = getMeasurements(drink)
 
-            list.removeAll(listOf(null))
+            Log.d("debug", ingredientList.toString())
+            Log.d("debug", measurements.toString())
 
-            Log.d("debug", list.toString())
+            ingredientList.forEach { ingredient ->
+                measurements.forEach { measurements ->
+                    Log.d("test", "$ingredient - $measurements")
+                }
+            }
+
 
         }
 
+    }
+
+    private fun getIngredientList(drink: Drink) : MutableList<String?>{
+        val list: MutableList<String?> = arrayListOf(
+            drink.strIngredient1,
+            drink.strIngredient2,
+            drink.strIngredient3,
+            drink.strIngredient4,
+            drink.strIngredient5,
+            drink.strIngredient6,
+            drink.strIngredient7,
+            drink.strIngredient8,
+            drink.strIngredient9,
+            drink.strIngredient10,
+            drink.strIngredient11,
+            drink.strIngredient12,
+            drink.strIngredient13,
+            drink.strIngredient14,
+            drink.strIngredient15,
+        )
+
+        list.removeAll(listOf(null))
+        return list
+
+    }
+
+    private fun getMeasurements(drink : Drink) : MutableList<String?>{
+        val list: MutableList<String?> = arrayListOf(
+            drink.strMeasure1,
+            drink.strMeasure2,
+            drink.strMeasure3,
+            drink.strMeasure4,
+            drink.strMeasure5,
+            drink.strMeasure6,
+            drink.strMeasure7,
+            drink.strMeasure8,
+            drink.strMeasure9,
+            drink.strMeasure10,
+            drink.strMeasure11,
+            drink.strMeasure12,
+            drink.strMeasure13,
+            drink.strMeasure14,
+            drink.strMeasure15,
+
+        )
+
+        list.removeAll(listOf(null))
+        return list
     }
 }
