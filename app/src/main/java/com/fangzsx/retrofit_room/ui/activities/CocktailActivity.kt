@@ -48,7 +48,7 @@ class CocktailActivity : AppCompatActivity() {
             }
 
 
-            binding.tvProcedure.text = drink.strInstructions
+            binding.tvProcedure.text = drink.strInstructions.replaceFirstChar { it.uppercase() }
 
 
         }
