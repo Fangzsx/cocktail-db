@@ -76,8 +76,7 @@
                     android:textStyle="bold"
                     android:gravity="center"
                     android:textColor="@color/black"
-                    android:paddingBottom="@dimen/_10sdp"
-                    android:text="Cocktail Name"/>
+                    android:paddingBottom="@dimen/_10sdp"/>
 
             </io.devlight.xtreeivi.cornercutlinearlayout.CornerCutLinearLayout>
 

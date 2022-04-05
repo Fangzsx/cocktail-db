@@ -67,7 +67,8 @@
                 android:id="@+id/rv_cocktail_ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?colorPrimary"
+                android:background="@drawable/rv_bg"
+                android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintTop_toBottomOf="@id/tv_ingredient"
                 app:layout_constraintStart_toStartOf="@id/tv_ingredient"/>
 

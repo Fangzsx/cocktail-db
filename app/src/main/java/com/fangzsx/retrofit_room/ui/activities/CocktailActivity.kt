@@ -17,6 +17,7 @@ class CocktailActivity : AppCompatActivity() {
 
     private lateinit var cocktailIngredientAdapter : CocktailIngredientsAdapter
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCocktailBinding.inflate(layoutInflater)
@@ -38,7 +39,8 @@ class CocktailActivity : AppCompatActivity() {
             val ingredientList = getIngredientList(drink)
             val measurements = getMeasurements(drink)
 
-            cocktailIngredientAdapter.submitList(ingredientList)
+            cocktailIngredientAdapter.submitIngredientList(ingredientList)
+            cocktailIngredientAdapter.submitMeasurementList(measurements)
 
             binding.rvCocktailIngredients.apply{
                 adapter = cocktailIngredientAdapter
@@ -99,8 +101,6 @@ class CocktailActivity : AppCompatActivity() {
             drink.strMeasure15,
 
         )
-
-        list.removeAll(listOf(null))
-        return list
+        return list.subList(0, getIngredientList(drink).size)
     }
 }

@@ -28,9 +28,14 @@
             android:scaleType="centerCrop" />
 
         <TextView
+            android:id="@+id/tv_ingredient_name"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_21sdp"
             android:textSize="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:singleLine="true"
+            android:ellipsize="marquee"
             android:fontFamily="@font/oneplussans"
             android:textStyle="bold"
             android:gravity="center"

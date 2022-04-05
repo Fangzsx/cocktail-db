@@ -48,6 +48,13 @@ class HomeFragment : Fragment() {
         homeFragmentVM.getRandomCocktail()
         homeFragmentVM.randomCocktail.observe(viewLifecycleOwner){ drink->
             setRecommendedDrink(drink)
+
+            binding.ivRecommended.setOnClickListener {
+                Intent(activity, CocktailActivity::class.java).apply {
+                    putExtra("ID", drink.idDrink)
+                    startActivity(this)
+                }
+            }
         }
 
         homeFragmentVM.getPopularAlcoholicDrinks()
@@ -77,6 +84,8 @@ class HomeFragment : Fragment() {
             adapter = ingredientAdapter
             layoutManager = GridLayoutManager(activity, 4, GridLayoutManager.HORIZONTAL, false)
         }
+
+
 
     }
 
