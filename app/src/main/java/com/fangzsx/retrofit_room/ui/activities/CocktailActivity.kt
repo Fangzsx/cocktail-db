@@ -47,11 +47,8 @@ class CocktailActivity : AppCompatActivity() {
                 layoutManager = GridLayoutManager(this@CocktailActivity, 4, GridLayoutManager.VERTICAL, false)
             }
 
-            ingredientList.forEach { ingredient ->
-                measurements.forEach { measurements ->
-                    Log.d("test", "$ingredient - $measurements")
-                }
-            }
+
+            binding.tvProcedure.text = drink.strInstructions
 
 
         }

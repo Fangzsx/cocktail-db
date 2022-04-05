@@ -45,7 +45,6 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/card_top_end_cut_bg"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -60,17 +59,41 @@
             android:text="INGREDIENTS"
             android:textStyle="bold"
             android:fontFamily="@font/oneplussans"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_12ssp"
             android:textColor="?colorOnPrimary" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_cocktail_ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rv_bg"
                 android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintTop_toBottomOf="@id/tv_ingredient"
                 app:layout_constraintStart_toStartOf="@id/tv_ingredient"/>
+
+            <TextView
+                android:id="@+id/tv_procedure_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/rv_cocktail_ingredients"
+                app:layout_constraintStart_toStartOf="@id/rv_cocktail_ingredients"
+                android:text="PROCEDURE"
+                android:fontFamily="@font/oneplussans"
+                android:textStyle="bold"
+                android:textColor="?colorOnPrimary"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
+            <TextView
+                android:id="@+id/tv_procedure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oneplussans"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="?colorOnPrimary"
+                app:layout_constraintTop_toBottomOf="@id/tv_procedure_label"
+                app:layout_constraintStart_toStartOf="@id/tv_procedure_label"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
