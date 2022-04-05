@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Retrofitroom">
         <activity
+            android:name=".ui.activities.FilterByIngredientActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.CockTailByIngredientActivity"
             android:exported="false" />
         <activity

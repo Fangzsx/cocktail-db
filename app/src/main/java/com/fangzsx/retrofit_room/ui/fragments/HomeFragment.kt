@@ -16,6 +16,7 @@ import com.fangzsx.retrofit_room.adapters.PopularAdapter
 import com.fangzsx.retrofit_room.databinding.FragmentHomeBinding
 import com.fangzsx.retrofit_room.model.Drink
 import com.fangzsx.retrofit_room.ui.activities.CocktailActivity
+import com.fangzsx.retrofit_room.ui.activities.FilterByIngredientActivity
 import com.fangzsx.retrofit_room.viewmodels.HomeFragmentViewModel
 
 
@@ -61,7 +62,10 @@ class HomeFragment : Fragment() {
         }
 
         ingredientAdapter.onItemClick = { filter ->
-            Toast.makeText(activity, filter, Toast.LENGTH_SHORT).show()
+            Intent(activity, FilterByIngredientActivity::class.java).apply{
+                putExtra("FILTER", filter)
+                startActivity(this)
+            }
         }
     }
 
