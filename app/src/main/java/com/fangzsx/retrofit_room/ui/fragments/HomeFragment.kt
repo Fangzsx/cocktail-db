@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -43,24 +44,29 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        homeFragmentVM.getRandomCocktail()
-        homeFragmentVM.randomCocktail.observe(viewLifecycleOwner){ drink->
-            setRecommendedDrink(drink)
 
-            binding.ivRecommended.setOnClickListener {
-                Intent(activity, CocktailActivity::class.java).apply {
-                    putExtra("ID", drink.idDrink)
-                    startActivity(this)
-                }
-            }
+        getJobsFromVM()
+        setUpRandomCocktail()
+        setUpPopularRecyclerView()
+        setupIngredientRecyclerView()
+
+
+
+    }
+
+    private fun setupIngredientRecyclerView() {
+        binding.rvIngredients.apply {
+            adapter = ingredientAdapter
+            layoutManager = GridLayoutManager(activity, 4, GridLayoutManager.HORIZONTAL, false)
         }
 
-        homeFragmentVM.filterByIngredient("gin")
-        homeFragmentVM.popularAlcoholic.observe(viewLifecycleOwner){ drinks ->
-            popularAdapter.differ.submitList(drinks)
+        ingredientAdapter.onItemClick = { filter ->
+            Toast.makeText(activity, filter, Toast.LENGTH_SHORT).show()
         }
+    }
 
-        binding.rvMostPopular.apply {
+    private fun setUpPopularRecyclerView() {
+        binding.rvPopular.apply {
             adapter = popularAdapter
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         }
@@ -72,19 +78,19 @@ class HomeFragment : Fragment() {
                 startActivity(this)
             }
         }
+    }
 
-        homeFragmentVM.getIngredients()
-        homeFragmentVM.ingredients.observe(viewLifecycleOwner){ ingredients ->
-            ingredientAdapter.differ.submitList(ingredients)
+    private fun setUpRandomCocktail() {
+        homeFragmentVM.randomCocktail.observe(viewLifecycleOwner) { drink ->
+            setRecommendedDrink(drink)
+
+            binding.ivRecommended.setOnClickListener {
+                Intent(activity, CocktailActivity::class.java).apply {
+                    putExtra("ID", drink.idDrink)
+                    startActivity(this)
+                }
+            }
         }
-
-        binding.rvIngredients.apply {
-            adapter = ingredientAdapter
-            layoutManager = GridLayoutManager(activity, 4, GridLayoutManager.HORIZONTAL, false)
-        }
-
-
-
     }
 
     private fun setRecommendedDrink(drink: Drink) {
@@ -94,6 +100,23 @@ class HomeFragment : Fragment() {
                 crossfade(1000)
             }
             tvRecommended.text = drink.strDrink
+        }
+    }
+
+    private fun getJobsFromVM(){
+        //random (recommendation)
+        homeFragmentVM.getRandomCocktail()
+
+        //popular
+        homeFragmentVM.filterByIngredient("gin")
+        homeFragmentVM.filteredList.observe(viewLifecycleOwner){ drinks ->
+            popularAdapter.differ.submitList(drinks.subList(0,10))
+        }
+
+        //ingredients
+        homeFragmentVM.getIngredients()
+        homeFragmentVM.ingredients.observe(viewLifecycleOwner){ ingredients ->
+            ingredientAdapter.differ.submitList(ingredients)
         }
     }
 

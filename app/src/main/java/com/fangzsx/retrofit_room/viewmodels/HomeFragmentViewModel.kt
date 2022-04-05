@@ -16,8 +16,8 @@ class HomeFragmentViewModel : ViewModel() {
     private val _randomCocktail :  MutableLiveData<Drink> = MutableLiveData()
     val randomCocktail : LiveData<Drink> = _randomCocktail
 
-    private val _popularAlcoholic : MutableLiveData<List<Drink>> = MutableLiveData()
-    val popularAlcoholic : LiveData<List<Drink>> = _popularAlcoholic
+    private val _filteredList : MutableLiveData<List<Drink>> = MutableLiveData()
+    val filteredList : LiveData<List<Drink>> = _filteredList
 
     private val _ingredients : MutableLiveData<List<Drink>> = MutableLiveData()
     val ingredients : LiveData<List<Drink>> = _ingredients
@@ -58,10 +58,11 @@ class HomeFragmentViewModel : ViewModel() {
 
         if(response.isSuccessful && response.body() != null){
             response.body()?.let { filteredDrinks ->
-                _popularAlcoholic.postValue(filteredDrinks.drinks.subList(0,10))
+                _filteredList.postValue(filteredDrinks.drinks)
             }
         }else{
             Log.e(TAG, "Response not successful")
+            return@launch
         }
     }
 

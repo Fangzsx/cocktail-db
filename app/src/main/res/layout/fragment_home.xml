@@ -118,7 +118,7 @@
                 app:layout_constraintTop_toBottomOf="@id/recommendation_cc"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_most_popular"
+                android:id="@+id/rv_popular"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_200sdp"
                 app:layout_constraintTop_toBottomOf="@id/tv_most_popular"
@@ -128,7 +128,7 @@
                 android:id="@+id/tv_drinks_by_ingredient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/rv_most_popular"
+                app:layout_constraintTop_toBottomOf="@id/rv_popular"
                 app:layout_constraintStart_toStartOf="@id/tv_most_popular"
                 android:text="Drinks by Ingredient"
                 android:textColor="?colorOnPrimary"
