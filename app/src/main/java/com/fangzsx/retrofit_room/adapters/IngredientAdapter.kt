@@ -11,6 +11,8 @@ import com.fangzsx.retrofit_room.model.Drink
 
 class IngredientAdapter : RecyclerView.Adapter<IngredientAdapter.ViewHolder>() {
 
+    var onItemClick : ((String) -> Unit)? = null
+
     inner class ViewHolder(val binding : IngredientItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val differCallback = object : DiffUtil.ItemCallback<Drink>(){
@@ -35,17 +37,20 @@ class IngredientAdapter : RecyclerView.Adapter<IngredientAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val ingredient = differ.currentList[position]
+        val drink = differ.currentList[position]
+        val ingredient = drink.strIngredient1
 
         holder.binding.apply {
-            tvIngredient.text = ingredient.strIngredient1
-            ivIngredient.load("https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Medium.png"){
+            tvIngredient.text = ingredient
+            ivIngredient.load("https://www.thecocktaildb.com/images/ingredients/$ingredient-Medium.png"){
                 crossfade(true)
                 crossfade(1000)
             }
         }
 
-
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(ingredient)
+        }
     }
 
     override fun getItemCount(): Int {
