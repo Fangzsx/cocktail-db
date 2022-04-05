@@ -4,6 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?colorOnSecondary"
     tools:context=".ui.activities.FilterByIngredientActivity">
+
+    <TextView
+        android:id="@+id/tv_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_20ssp"
+        android:textColor="?colorOnPrimary"
+        android:textStyle="bold"
+        android:text="Filter By Ingredient"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        app:layout_constraintTop_toBottomOf="@id/tv_filter"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="?colorSecondaryVariant"
+        app:layout_constraintEnd_toEndOf="parent">
+        <ImageView
+            android:id="@+id/iv_filter"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"/>
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

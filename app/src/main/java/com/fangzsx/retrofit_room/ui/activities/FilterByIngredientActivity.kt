@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import coil.load
 import com.fangzsx.retrofit_room.databinding.ActivityFilterByIngredientBinding
 import com.fangzsx.retrofit_room.viewmodels.FilterByIngredientViewModel
 
@@ -18,7 +19,12 @@ class FilterByIngredientActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val filter = intent.getStringExtra("FILTER")
-        Toast.makeText(this, "$filter", Toast.LENGTH_SHORT).show()
+
+        binding.ivFilter.load("https://www.thecocktaildb.com/images/ingredients/$filter.png"){
+            crossfade(true)
+            crossfade(1000)
+        }
+
         filterByIngredientVM.filter(filter)
         filterByIngredientVM.filteredList.observe(this){
             Toast.makeText(this, "${it.size}", Toast.LENGTH_SHORT).show()
