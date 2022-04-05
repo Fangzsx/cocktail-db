@@ -1,7 +1,6 @@
 package com.fangzsx.retrofit_room.viewmodels
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.fangzsx.retrofit_room.model.Drink
 import com.fangzsx.retrofit_room.retrofit.RetrofitInstance
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withTimeoutOrNull
 import okio.IOException
 import retrofit2.HttpException
 
@@ -47,9 +45,9 @@ class HomeFragmentViewModel : ViewModel() {
 
     }
 
-    fun getPopularAlcoholicDrinks() = viewModelScope.launch {
+    fun filterByIngredient(filter : String) = viewModelScope.launch {
         val response = try{
-            RetrofitInstance.cocktailApi.getAlcoholic()
+            RetrofitInstance.cocktailApi.filterByIngredient(filter)
         }catch (e : IOException){
             Log.e(TAG, "No internet connection")
             return@launch
@@ -59,8 +57,8 @@ class HomeFragmentViewModel : ViewModel() {
         }
 
         if(response.isSuccessful && response.body() != null){
-            response.body()?.let { alcoholics ->
-                _popularAlcoholic.postValue(alcoholics.drinks.subList(0,10))
+            response.body()?.let { filteredDrinks ->
+                _popularAlcoholic.postValue(filteredDrinks.drinks.subList(0,10))
             }
         }else{
             Log.e(TAG, "Response not successful")
@@ -85,7 +83,6 @@ class HomeFragmentViewModel : ViewModel() {
         }else{
             Log.e(TAG, "Response not successful")
         }
-
     }
 
 }

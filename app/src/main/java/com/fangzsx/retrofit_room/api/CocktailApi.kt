@@ -1,6 +1,6 @@
 package com.fangzsx.retrofit_room.api
 
-import com.fangzsx.retrofit_room.model.AlcoholicResponse
+import com.fangzsx.retrofit_room.model.FilterByIngredientResponse
 import com.fangzsx.retrofit_room.model.DrinkResponse
 import com.fangzsx.retrofit_room.model.IngredientListResponse
 import com.fangzsx.retrofit_room.model.RandomCocktailResponse
@@ -13,8 +13,11 @@ interface CocktailApi {
     @GET("random.php")
     suspend fun getRandomCocktail() : Response<RandomCocktailResponse>
 
-    @GET("filter.php?a=Alcoholic")
-    suspend fun getAlcoholic() : Response<AlcoholicResponse>
+    @GET("filter.php")
+    suspend fun filterByIngredient(
+        @Query("i")
+        category : String
+    ) : Response<FilterByIngredientResponse>
 
     @GET("list.php?i=list")
     suspend fun getListOfIngredients() : Response<IngredientListResponse>
@@ -24,4 +27,6 @@ interface CocktailApi {
         @Query("i")
         id : String?
     ) : Response<DrinkResponse>
+
+
 }
