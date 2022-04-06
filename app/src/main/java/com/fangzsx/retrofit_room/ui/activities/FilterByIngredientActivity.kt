@@ -23,12 +23,12 @@ class FilterByIngredientActivity : AppCompatActivity() {
 
         val filter = intent.getStringExtra("FILTER")
 
-        binding.ivFilter.load("https://www.thecocktaildb.com/images/ingredients/$filter.png"){
+        binding.ivIngredient.load("https://www.thecocktaildb.com/images/ingredients/$filter.png"){
             crossfade(true)
             crossfade(1000)
         }
 
-        binding.tvFilter.text = filter
+        binding.tvIngredient.text = filter
 
         filterByIngredientVM.filter(filter)
         filterByIngredientVM.filteredList.observe(this){
