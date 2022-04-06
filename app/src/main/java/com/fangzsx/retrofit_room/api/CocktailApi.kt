@@ -1,9 +1,6 @@
 package com.fangzsx.retrofit_room.api
 
-import com.fangzsx.retrofit_room.model.FilterByIngredientResponse
-import com.fangzsx.retrofit_room.model.DrinkResponse
-import com.fangzsx.retrofit_room.model.IngredientListResponse
-import com.fangzsx.retrofit_room.model.RandomCocktailResponse
+import com.fangzsx.retrofit_room.model.*
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -28,7 +25,11 @@ interface CocktailApi {
         id : String?
     ) : Response<DrinkResponse>
 
-
+    @GET("search.php")
+    suspend fun getIngredientInfo(
+        @Query("i")
+        ingredientName : String
+    ) : Response<IngredientInfoResponse>
 
 
 }
