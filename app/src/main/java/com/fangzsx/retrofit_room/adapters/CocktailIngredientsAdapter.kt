@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.fangzsx.retrofit_room.databinding.IngredientItemFlipItemBinding
+import com.fangzsx.retrofit_room.databinding.FlipItemBinding
 import com.wajahatkarim3.easyflipview.EasyFlipView
 
 class CocktailIngredientsAdapter : RecyclerView.Adapter<CocktailIngredientsAdapter.IngredientViewHolder>() {
 
-    inner class IngredientViewHolder(val binding : IngredientItemFlipItemBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class IngredientViewHolder(val binding : FlipItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     private var _ingredientList : MutableList<String?> = mutableListOf()
     private var _measurementList : MutableList<String?> = mutableListOf()
@@ -24,7 +24,7 @@ class CocktailIngredientsAdapter : RecyclerView.Adapter<CocktailIngredientsAdapt
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientViewHolder {
         return IngredientViewHolder(
-            IngredientItemFlipItemBinding.inflate(
+            FlipItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

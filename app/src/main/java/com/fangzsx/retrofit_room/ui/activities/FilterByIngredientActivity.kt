@@ -32,7 +32,7 @@ class FilterByIngredientActivity : AppCompatActivity() {
 
         filterByIngredientVM.filter(filter)
         filterByIngredientVM.filteredList.observe(this){
-            Toast.makeText(this, "${it.size}", Toast.LENGTH_SHORT).show()
+            binding.tvCocktailCount.text = "Cocktail Count: ${it.size}"
         }
 
         filterByIngredientVM.getIngredientInfo(filter)
