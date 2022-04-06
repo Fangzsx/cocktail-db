@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.fangzsx.retrofit_room.databinding.ActivityFilterByIngredientBinding
 import com.fangzsx.retrofit_room.viewmodels.FilterByIngredientViewModel
+import java.lang.NullPointerException
 
 class FilterByIngredientActivity : AppCompatActivity() {
     private lateinit var binding : ActivityFilterByIngredientBinding
@@ -36,12 +37,18 @@ class FilterByIngredientActivity : AppCompatActivity() {
 
         filterByIngredientVM.getIngredientInfo(filter)
         filterByIngredientVM.ingredient.observe(this){
-            binding.tvFilterDescription.text = try{
-                it.strDescription.substringBefore(".")
-            }catch (e: Exception){
-                binding.tvFilterDescription.text = "Just a typical $filter"
-                return@observe
-            }
+
+                try{
+                    if(it.strDescription.substringBefore('.').length <= 30){
+                        binding.tvFilterDescription.text = "Just a typical ${it.strIngredient}."
+                    }else{
+                        binding.tvFilterDescription.text = it.strDescription.substringBefore('.') + "."
+                    }
+                }catch (e : NullPointerException){
+                    binding.tvFilterDescription.text = "Just a typical ${it.strIngredient}."
+                    Log.e(TAG, e.message.toString())
+                }
+
         }
 
 
