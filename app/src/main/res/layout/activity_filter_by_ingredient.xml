@@ -8,7 +8,7 @@
     tools:context=".ui.activities.FilterByIngredientActivity">
 
     <TextView
-        android:id="@+id/tv_filter"
+        android:id="@+id/tv_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/_20ssp"
@@ -18,20 +18,54 @@
         android:layout_margin="@dimen/_10sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/oneplussans"
+        android:textSize="@dimen/_12ssp"
+        android:textStyle="bold"
+        android:textColor="?colorOnPrimary"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/tv_header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Ingredient name:"/>
     <LinearLayout
+        android:id="@+id/ll_filter_info"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_150sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintTop_toBottomOf="@id/tv_filter"
         app:layout_constraintStart_toStartOf="parent"
         android:background="?colorSecondaryVariant"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:weightSum="1">
         <ImageView
             android:id="@+id/iv_filter"
-            android:layout_width="@dimen/_150sdp"
+            android:layout_width="0dp"
+            android:layout_weight="0.40"
             android:layout_height="match_parent"
             android:scaleType="fitCenter"/>
-
-
+        <TextView
+            android:id="@+id/tv_filter_description"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.60"
+            android:fontFamily="@font/oneplussans"
+            android:textSize="@dimen/_10ssp"
+            android:padding="@dimen/_10sdp"
+            android:text="Ingredient Description"/>
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_filtered_drinks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ll_filter_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
