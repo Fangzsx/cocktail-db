@@ -34,6 +34,10 @@
             android:textSize="@dimen/_4sdp"
             android:fontFamily="@font/oneplussans"
             android:textStyle="bold"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:singleLine="true"
+            android:ellipsize="marquee"
             android:gravity="center"
             android:paddingBottom="@dimen/_10sdp"
             android:textColor="@color/black"/>
