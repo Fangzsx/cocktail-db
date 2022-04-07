@@ -1,11 +1,15 @@
 package com.fangzsx.retrofit_room.ui.activities
 
+import android.graphics.Color.red
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import coil.load
+import com.fangzsx.retrofit_room.R
 import com.fangzsx.retrofit_room.adapters.CocktailIngredientsAdapter
 import com.fangzsx.retrofit_room.databinding.ActivityCocktailBinding
 import com.fangzsx.retrofit_room.model.Drink
@@ -16,6 +20,10 @@ class CocktailActivity : AppCompatActivity() {
     private lateinit var cocktailVM : CocktailActivityViewModel
 
     private lateinit var cocktailIngredientAdapter : CocktailIngredientsAdapter
+
+    override fun onBackPressed() {
+        finish()
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +46,15 @@ class CocktailActivity : AppCompatActivity() {
             binding.clToolbar.title = drink.strDrink
             binding.tvProcedure.text = drink.strInstructions.replaceFirstChar { it.uppercase() }
             binding.tvAlcoholic.text = drink.strAlcoholic
+
+            when(drink.strAlcoholic){
+                "Alcoholic" -> DrawableCompat.setTint(binding.tvAlcoholic.background, ContextCompat.getColor(this, R.color.red))
+                "Non alcoholic" -> DrawableCompat.setTint(binding.tvAlcoholic.background, ContextCompat.getColor(this, R.color.green))
+                "Optional alcohol" -> DrawableCompat.setTint(binding.tvAlcoholic.background, ContextCompat.getColor(this, R.color.blue))
+            }
+
             binding.tvCategory.text = drink.strCategory
+
 
             val ingredientList = getIngredientList(drink)
             val measurements = getMeasurements(drink)
