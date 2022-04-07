@@ -74,6 +74,10 @@
                     android:fontFamily="@font/oneplussans"
                     android:textStyle="bold"
                     android:gravity="center"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
                     android:textColor="@color/black"
                     android:paddingBottom="@dimen/_10sdp"/>
 

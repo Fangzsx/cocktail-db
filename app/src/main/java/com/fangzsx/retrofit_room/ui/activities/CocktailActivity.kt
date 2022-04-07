@@ -33,8 +33,12 @@ class CocktailActivity : AppCompatActivity() {
                 crossfade(true)
                 crossfade(1000)
             }
-            binding.clToolbar.title = drink.strDrink
 
+
+            binding.clToolbar.title = drink.strDrink
+            binding.tvProcedure.text = drink.strInstructions.replaceFirstChar { it.uppercase() }
+            binding.tvAlcoholic.text = drink.strAlcoholic
+            binding.tvCategory.text = drink.strCategory
 
             val ingredientList = getIngredientList(drink)
             val measurements = getMeasurements(drink)
@@ -48,7 +52,6 @@ class CocktailActivity : AppCompatActivity() {
             }
 
 
-            binding.tvProcedure.text = drink.strInstructions.replaceFirstChar { it.uppercase() }
 
 
         }
