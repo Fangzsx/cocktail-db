@@ -16,7 +16,10 @@ import com.fangzsx.retrofit_room.adapters.CocktailIngredientsAdapter
 import com.fangzsx.retrofit_room.databinding.ActivityCocktailBinding
 import com.fangzsx.retrofit_room.model.Drink
 import com.fangzsx.retrofit_room.viewmodels.CocktailActivityViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class CocktailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityCocktailBinding
@@ -42,8 +45,12 @@ class CocktailActivity : AppCompatActivity() {
         cocktailVM.getCocktailByID(id)
 
         cocktailVM.drink.observe(this){ drink ->
-            setCocktailDataIntoView(drink)
-            success()
+            //add delay 1sec
+            CoroutineScope(Dispatchers.Main).launch {
+                delay(1000)
+                setCocktailDataIntoView(drink)
+                success()
+            }
         }
 
 
@@ -51,7 +58,6 @@ class CocktailActivity : AppCompatActivity() {
     }
 
     private fun success() {
-
 
         binding.apply {
             loading.visibility = View.INVISIBLE
@@ -88,7 +94,6 @@ class CocktailActivity : AppCompatActivity() {
             crossfade(1000)
         }
 
-
         binding.clToolbar.title = drink.strDrink
         binding.tvProcedure.text = drink.strInstructions.replaceFirstChar { it.uppercase() }
         binding.tvAlcoholic.text = drink.strAlcoholic
@@ -115,7 +120,6 @@ class CocktailActivity : AppCompatActivity() {
 
         cocktailIngredientAdapter.submitIngredientList(ingredientList)
         cocktailIngredientAdapter.submitMeasurementList(measurements)
-
         setUpIngredientsRecyclerView()
 
     }
