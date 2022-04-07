@@ -71,6 +71,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_tags"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TAGS"
@@ -143,13 +144,13 @@
                 app:layout_constraintStart_toStartOf="@id/tv_procedure_label"
                 android:layout_marginTop="@dimen/_10sdp"/>
 
-
             <com.bitvale.lightprogress.LightProgress
                 android:id="@+id/loading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:textColor="?colorSecondary"
+                app:light_color="@color/yellow"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -4,6 +4,8 @@ import android.graphics.Color.red
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +16,7 @@ import com.fangzsx.retrofit_room.adapters.CocktailIngredientsAdapter
 import com.fangzsx.retrofit_room.databinding.ActivityCocktailBinding
 import com.fangzsx.retrofit_room.model.Drink
 import com.fangzsx.retrofit_room.viewmodels.CocktailActivityViewModel
+import kotlinx.coroutines.delay
 
 class CocktailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityCocktailBinding
@@ -34,46 +37,95 @@ class CocktailActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        loading()
         val id = intent.getStringExtra("ID")
         cocktailVM.getCocktailByID(id)
+
         cocktailVM.drink.observe(this){ drink ->
-            binding.ivCocktail.load(drink.strDrinkThumb){
-                crossfade(true)
-                crossfade(1000)
-            }
-
-
-            binding.clToolbar.title = drink.strDrink
-            binding.tvProcedure.text = drink.strInstructions.replaceFirstChar { it.uppercase() }
-            binding.tvAlcoholic.text = drink.strAlcoholic
-
-            binding.loading.on()
-
-            when(drink.strAlcoholic){
-                "Alcoholic" -> DrawableCompat.setTint(binding.tvAlcoholic.background, ContextCompat.getColor(this, R.color.red))
-                "Non alcoholic" -> DrawableCompat.setTint(binding.tvAlcoholic.background, ContextCompat.getColor(this, R.color.green))
-                "Optional alcohol" -> DrawableCompat.setTint(binding.tvAlcoholic.background, ContextCompat.getColor(this, R.color.blue))
-            }
-
-            binding.tvCategory.text = drink.strCategory
-
-
-            val ingredientList = getIngredientList(drink)
-            val measurements = getMeasurements(drink)
-
-            cocktailIngredientAdapter.submitIngredientList(ingredientList)
-            cocktailIngredientAdapter.submitMeasurementList(measurements)
-
-            binding.rvCocktailIngredients.apply{
-                adapter = cocktailIngredientAdapter
-                layoutManager = GridLayoutManager(this@CocktailActivity, 4, GridLayoutManager.VERTICAL, false)
-            }
-
-
-
-
+            setCocktailDataIntoView(drink)
+            success()
         }
 
+
+
+    }
+
+    private fun success() {
+
+
+        binding.apply {
+            loading.visibility = View.INVISIBLE
+            tvAlcoholic.visibility = View.VISIBLE
+            tvCategory.visibility = View.VISIBLE
+            tvIngredient.visibility = View.VISIBLE
+            tvProcedure.visibility = View.VISIBLE
+            tvProcedureLabel.visibility = View.VISIBLE
+            tvTags.visibility = View.VISIBLE
+            rvCocktailIngredients.visibility = View.VISIBLE
+        }
+    }
+
+    private fun loading() {
+        binding.loading.apply {
+            visibility = View.VISIBLE
+            on()
+        }
+        
+        binding.apply {
+            tvAlcoholic.visibility = View.INVISIBLE
+            tvCategory.visibility = View.INVISIBLE
+            tvIngredient.visibility = View.INVISIBLE
+            tvProcedure.visibility = View.INVISIBLE
+            tvProcedureLabel.visibility = View.INVISIBLE
+            tvTags.visibility = View.INVISIBLE
+            rvCocktailIngredients.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun setCocktailDataIntoView(drink: Drink) {
+        binding.ivCocktail.load(drink.strDrinkThumb) {
+            crossfade(true)
+            crossfade(1000)
+        }
+
+
+        binding.clToolbar.title = drink.strDrink
+        binding.tvProcedure.text = drink.strInstructions.replaceFirstChar { it.uppercase() }
+        binding.tvAlcoholic.text = drink.strAlcoholic
+
+        //change color of alcoholic bg
+        when (drink.strAlcoholic) {
+            "Alcoholic" -> DrawableCompat.setTint(
+                binding.tvAlcoholic.background,
+                ContextCompat.getColor(this, R.color.red)
+            )
+            "Non alcoholic" -> DrawableCompat.setTint(
+                binding.tvAlcoholic.background,
+                ContextCompat.getColor(this, R.color.green)
+            )
+            "Optional alcohol" -> DrawableCompat.setTint(
+                binding.tvAlcoholic.background,
+                ContextCompat.getColor(this, R.color.blue)
+            )
+        }
+        binding.tvCategory.text = drink.strCategory
+
+        val ingredientList = getIngredientList(drink)
+        val measurements = getMeasurements(drink)
+
+        cocktailIngredientAdapter.submitIngredientList(ingredientList)
+        cocktailIngredientAdapter.submitMeasurementList(measurements)
+
+        setUpIngredientsRecyclerView()
+
+    }
+
+    private fun setUpIngredientsRecyclerView() {
+        binding.rvCocktailIngredients.apply {
+            adapter = cocktailIngredientAdapter
+            layoutManager =
+                GridLayoutManager(this@CocktailActivity, 4, GridLayoutManager.VERTICAL, false)
+        }
     }
 
     private fun getIngredientList(drink: Drink) : MutableList<String?>{
@@ -95,6 +147,7 @@ class CocktailActivity : AppCompatActivity() {
             drink.strIngredient15,
         )
 
+        //remove all null ingredient
         list.removeAll(listOf(null))
         return list
 
@@ -119,6 +172,8 @@ class CocktailActivity : AppCompatActivity() {
             drink.strMeasure15,
 
         )
+        //do not remove null, size must depend on size of ingredients for the reason that some ingredient
+        //has no measurement.
         return list.subList(0, getIngredientList(drink).size)
     }
 }
