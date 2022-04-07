@@ -109,10 +109,6 @@
                     android:background="@drawable/tag_bg"
                     android:backgroundTint="#673AB7"
                     android:textColor="@color/white"/>
-
-
-
-
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -148,9 +144,18 @@
                 android:layout_marginTop="@dimen/_10sdp"/>
 
 
+            <com.bitvale.lightprogress.LightProgress
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:textColor="?colorSecondary"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

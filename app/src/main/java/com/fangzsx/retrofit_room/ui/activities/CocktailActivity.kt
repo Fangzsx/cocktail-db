@@ -47,6 +47,8 @@ class CocktailActivity : AppCompatActivity() {
             binding.tvProcedure.text = drink.strInstructions.replaceFirstChar { it.uppercase() }
             binding.tvAlcoholic.text = drink.strAlcoholic
 
+            binding.loading.on()
+
             when(drink.strAlcoholic){
                 "Alcoholic" -> DrawableCompat.setTint(binding.tvAlcoholic.background, ContextCompat.getColor(this, R.color.red))
                 "Non alcoholic" -> DrawableCompat.setTint(binding.tvAlcoholic.background, ContextCompat.getColor(this, R.color.green))

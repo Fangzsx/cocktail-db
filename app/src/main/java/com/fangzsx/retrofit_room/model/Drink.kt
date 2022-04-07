@@ -1,7 +1,6 @@
 package com.fangzsx.retrofit_room.model
 
 data class Drink(
-    val dateModified: String,
     val idDrink: String,
     val strAlcoholic: String,
     val strCategory: String,
