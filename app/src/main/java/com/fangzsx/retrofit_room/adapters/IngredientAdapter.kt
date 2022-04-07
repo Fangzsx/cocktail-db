@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.fangzsx.retrofit_room.databinding.IngredientItemBinding
+import com.fangzsx.retrofit_room.databinding.CardItemBinding
 import com.fangzsx.retrofit_room.model.Drink
 
 class IngredientAdapter : RecyclerView.Adapter<IngredientAdapter.ViewHolder>() {
 
     var onItemClick : ((String) -> Unit)? = null
 
-    inner class ViewHolder(val binding : IngredientItemBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding : CardItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val differCallback = object : DiffUtil.ItemCallback<Drink>(){
         override fun areItemsTheSame(oldItem: Drink, newItem: Drink): Boolean {
@@ -28,7 +28,7 @@ class IngredientAdapter : RecyclerView.Adapter<IngredientAdapter.ViewHolder>() {
     var differ = AsyncListDiffer(this, differCallback)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            IngredientItemBinding.inflate(
+            CardItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -41,8 +41,8 @@ class IngredientAdapter : RecyclerView.Adapter<IngredientAdapter.ViewHolder>() {
         val ingredient = drink.strIngredient1
 
         holder.binding.apply {
-            tvIngredient.text = ingredient
-            ivIngredient.load("https://www.thecocktaildb.com/images/ingredients/$ingredient-Medium.png"){
+            tvItem.text = ingredient
+            ivItem.load("https://www.thecocktaildb.com/images/ingredients/$ingredient-Medium.png"){
                 crossfade(true)
                 crossfade(1000)
             }

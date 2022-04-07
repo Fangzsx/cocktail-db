@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.fangzsx.retrofit_room.databinding.FlipItemBinding
-import com.fangzsx.retrofit_room.databinding.IngredientItemBinding
+import com.fangzsx.retrofit_room.databinding.CardItemBinding
 import com.fangzsx.retrofit_room.model.Drink
 
 class FilteredByIngredientAdapter : RecyclerView.Adapter<FilteredByIngredientAdapter.CocktailViewHolder>() {
 
-    inner class CocktailViewHolder(val binding : IngredientItemBinding) : RecyclerView.ViewHolder(binding.root)
+    var onItemClick : ((Drink) -> Unit)? = null
+
+    inner class CocktailViewHolder(val binding : CardItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val differCallback = object : DiffUtil.ItemCallback<Drink>(){
         override fun areItemsTheSame(oldItem: Drink, newItem: Drink): Boolean {
@@ -27,7 +28,7 @@ class FilteredByIngredientAdapter : RecyclerView.Adapter<FilteredByIngredientAda
     var differ = AsyncListDiffer(this, differCallback)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CocktailViewHolder {
         return CocktailViewHolder(
-            IngredientItemBinding.inflate(
+            CardItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -39,10 +40,16 @@ class FilteredByIngredientAdapter : RecyclerView.Adapter<FilteredByIngredientAda
         val drink = differ.currentList[position]
 
         holder.binding.apply {
-            ivIngredient.load(drink.strDrinkThumb){
+            ivItem.load(drink.strDrinkThumb){
                 crossfade(true)
                 crossfade(1000)
             }
+
+            tvItem.text = drink.strDrink
+        }
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(drink)
         }
 
 

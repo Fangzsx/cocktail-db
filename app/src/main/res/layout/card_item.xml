@@ -22,13 +22,13 @@
 
 
         <ImageView
-            android:id="@+id/iv_ingredient"
+            android:id="@+id/iv_item"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_60sdp"
             android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/tv_ingredient"
+            android:id="@+id/tv_item"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_21sdp"
             android:textSize="@dimen/_4sdp"

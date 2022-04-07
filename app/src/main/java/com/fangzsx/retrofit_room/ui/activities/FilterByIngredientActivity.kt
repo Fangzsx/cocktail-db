@@ -1,5 +1,6 @@
 package com.fangzsx.retrofit_room.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -44,6 +45,13 @@ class FilterByIngredientActivity : AppCompatActivity() {
         binding.rvFilteredCocktail.apply{
             layoutManager = GridLayoutManager(this@FilterByIngredientActivity, 4, GridLayoutManager.VERTICAL,false)
             adapter = filteredByIngredientAdapter
+        }
+
+        filteredByIngredientAdapter.onItemClick = { drink ->
+            Intent(this, CocktailActivity::class.java).apply {
+                putExtra("ID", drink.idDrink)
+                startActivity(this)
+            }
         }
 
 
