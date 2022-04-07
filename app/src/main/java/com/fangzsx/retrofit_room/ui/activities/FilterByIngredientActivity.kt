@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import coil.load
+import com.fangzsx.retrofit_room.adapters.FilteredByIngredientAdapter
 import com.fangzsx.retrofit_room.databinding.ActivityFilterByIngredientBinding
 import com.fangzsx.retrofit_room.viewmodels.FilterByIngredientViewModel
 import java.lang.NullPointerException
@@ -13,10 +15,12 @@ import java.lang.NullPointerException
 class FilterByIngredientActivity : AppCompatActivity() {
     private lateinit var binding : ActivityFilterByIngredientBinding
     private lateinit var filterByIngredientVM : FilterByIngredientViewModel
+    private lateinit var filteredByIngredientAdapter : FilteredByIngredientAdapter
     private val TAG = "FilterByIngredientActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityFilterByIngredientBinding.inflate(layoutInflater)
+        filteredByIngredientAdapter = FilteredByIngredientAdapter()
         filterByIngredientVM = ViewModelProvider(this).get(FilterByIngredientViewModel::class.java)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -31,9 +35,17 @@ class FilterByIngredientActivity : AppCompatActivity() {
         binding.tvIngredient.text = filter
 
         filterByIngredientVM.filter(filter)
-        filterByIngredientVM.filteredList.observe(this){
-            binding.tvCocktailCount.text = "Cocktail Count: ${it.size}"
+        filterByIngredientVM.filteredList.observe(this){ cocktails ->
+            binding.tvCocktailCount.text = "Cocktail Count: ${cocktails.size}"
+            filteredByIngredientAdapter.differ.submitList(cocktails)
+
         }
+
+        binding.rvFilteredCocktail.apply{
+            layoutManager = GridLayoutManager(this@FilterByIngredientActivity, 4, GridLayoutManager.VERTICAL,false)
+            adapter = filteredByIngredientAdapter
+        }
+
 
         filterByIngredientVM.getIngredientInfo(filter)
         filterByIngredientVM.ingredient.observe(this){
