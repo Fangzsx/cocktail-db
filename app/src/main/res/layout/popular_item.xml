@@ -35,6 +35,8 @@
             android:paddingBottom="@dimen/_10sdp"
             android:textSize="@dimen/_10sdp"
             android:fontFamily="@font/oneplussans"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:singleLine="true"
             android:ellipsize="marquee"
             android:textStyle="bold"
