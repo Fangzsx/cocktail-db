@@ -7,12 +7,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fangzsx.retrofit_room.model.Drink
+import com.fangzsx.retrofit_room.repo.DrinkRepository
 import com.fangzsx.retrofit_room.retrofit.RetrofitInstance
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
-class CocktailActivityViewModel : ViewModel() {
+class CocktailActivityViewModel(
+    private val drinkRepository: DrinkRepository
+) : ViewModel() {
 
     private val _drink : MutableLiveData<Drink> = MutableLiveData()
     val drink : LiveData<Drink> = _drink
@@ -36,5 +39,9 @@ class CocktailActivityViewModel : ViewModel() {
         }else{
             Log.e(TAG, "Response not successful")
         }
+    }
+
+    fun addDrink(drink :Drink) = viewModelScope.launch {
+        drinkRepository.addDrink(drink)
     }
 }

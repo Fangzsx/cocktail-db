@@ -49,7 +49,7 @@ class IngredientAdapter : RecyclerView.Adapter<IngredientAdapter.ViewHolder>() {
         }
 
         holder.itemView.setOnClickListener {
-            onItemClick?.invoke(ingredient)
+            onItemClick?.invoke(ingredient!!)
         }
     }
 

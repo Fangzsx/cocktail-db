@@ -14,8 +14,11 @@ import coil.load
 import com.fangzsx.retrofit_room.R
 import com.fangzsx.retrofit_room.adapters.CocktailIngredientsAdapter
 import com.fangzsx.retrofit_room.databinding.ActivityCocktailBinding
+import com.fangzsx.retrofit_room.db.DrinkDatabase
 import com.fangzsx.retrofit_room.model.Drink
+import com.fangzsx.retrofit_room.repo.DrinkRepository
 import com.fangzsx.retrofit_room.viewmodels.CocktailActivityViewModel
+import com.fangzsx.retrofit_room.viewmodels.factory.CocktailActivityVMFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -35,8 +38,13 @@ class CocktailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCocktailBinding.inflate(layoutInflater)
-        cocktailVM = ViewModelProvider(this).get(CocktailActivityViewModel::class.java)
+
+        val drinkRepository : DrinkRepository = DrinkRepository(DrinkDatabase.getInstance(this).getDrinkDao())
+        val cocktailVMFactory : CocktailActivityVMFactory = CocktailActivityVMFactory(drinkRepository)
+
+        cocktailVM = ViewModelProvider(this, cocktailVMFactory).get(CocktailActivityViewModel::class.java)
         cocktailIngredientAdapter = CocktailIngredientsAdapter()
+
 
         setContentView(binding.root)
 
@@ -52,7 +60,7 @@ class CocktailActivity : AppCompatActivity() {
                 success()
             }
         }
-
+        
 
 
     }
@@ -97,6 +105,10 @@ class CocktailActivity : AppCompatActivity() {
         binding.clToolbar.title = drink.strDrink
         binding.tvProcedure.text = drink.strInstructions.replaceFirstChar { it.uppercase() }
         binding.tvAlcoholic.text = drink.strAlcoholic
+
+        binding.fabAdd.setOnClickListener {
+            cocktailVM.addDrink(drink)
+        }
 
         //change color of alcoholic bg
         when (drink.strAlcoholic) {
