@@ -38,9 +38,6 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        favoritesVM.viewDrinks().observe(viewLifecycleOwner){
-            binding.tv.text = it.size.toString()
-        }
 
     }
 

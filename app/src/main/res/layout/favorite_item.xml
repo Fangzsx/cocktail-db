@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_5sdp"
+    app:cardBackgroundColor="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <io.devlight.xtreeivi.cornercutlinearlayout.CornerCutLinearLayout
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            app:ccll_corner_cut_flag="start_top|end_bottom"
+            app:ccll_corner_cut_size="12dp"
+            app:ccll_corner_cut_type="oval"
+            app:ccll_child_corner_cut_type="oval_inverse"
+            app:ccll_custom_shadow_color="?colorSecondary"
+            app:ccll_custom_shadow_radius="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+            
+            <ImageView
+                android:id="@+id/iv_item"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/tv_item"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_21sdp"
+                android:textSize="@dimen/_4sdp"
+                android:fontFamily="@font/oneplussans"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:gravity="center"
+                android:paddingBottom="@dimen/_10sdp"
+                android:textColor="@color/black"/>
+
+        </io.devlight.xtreeivi.cornercutlinearlayout.CornerCutLinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
