@@ -1,10 +1,12 @@
 package com.fangzsx.retrofit_room.model
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "drinks"
+    tableName = "drinks",
+    indices = [Index(value = ["idDrink"], unique = true)]
 )
 data class Drink(
     @PrimaryKey(autoGenerate = true)
