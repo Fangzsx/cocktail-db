@@ -1,9 +1,12 @@
 package com.fangzsx.retrofit_room.ui.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,11 +23,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 
 class CocktailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityCocktailBinding
     private lateinit var cocktailVM : CocktailActivityViewModel
-
+    private lateinit var drinkRepository : DrinkRepository
+    private lateinit var cocktailVMFactory : CocktailActivityVMFactory
     private lateinit var cocktailIngredientAdapter : CocktailIngredientsAdapter
 
     override fun onBackPressed() {
@@ -36,13 +42,11 @@ class CocktailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCocktailBinding.inflate(layoutInflater)
 
-        val drinkRepository : DrinkRepository = DrinkRepository(DrinkDatabase.getInstance(this).getDrinkDao())
-        val cocktailVMFactory : CocktailActivityVMFactory = CocktailActivityVMFactory(drinkRepository)
+        drinkRepository = DrinkRepository(DrinkDatabase.getInstance(this).getDrinkDao())
+        cocktailVMFactory = CocktailActivityVMFactory(drinkRepository)
 
         cocktailVM = ViewModelProvider(this, cocktailVMFactory).get(CocktailActivityViewModel::class.java)
         cocktailIngredientAdapter = CocktailIngredientsAdapter()
-
-
         setContentView(binding.root)
 
         loading()
@@ -103,8 +107,18 @@ class CocktailActivity : AppCompatActivity() {
         binding.tvProcedure.text = drink.strInstructions.replaceFirstChar { it.uppercase() }
         binding.tvAlcoholic.text = drink.strAlcoholic
 
+        
+        //add to favorites
         binding.fabAdd.setOnClickListener {
+
             cocktailVM.addDrink(drink)
+            MotionToast.createColorToast(this,
+                "Added",
+                "${drink.strDrink} is now available on Favorites! \ud83d\ude0d",
+                MotionToastStyle.SUCCESS,
+                MotionToast.GRAVITY_BOTTOM,
+                MotionToast.LONG_DURATION,
+                ResourcesCompat.getFont(this,R.font.oneplussans))
         }
 
         //change color of alcoholic bg
@@ -132,6 +146,17 @@ class CocktailActivity : AppCompatActivity() {
         setUpIngredientsRecyclerView()
 
     }
+
+    private fun isExisting(list : List<Drink>, drink : Drink) : Boolean{
+        var bool : Boolean = false
+        list.forEach { itemDrink ->
+            if(itemDrink.idDrink == drink.idDrink){
+                bool = true
+            }
+        }
+        return bool
+    }
+
 
     private fun setUpIngredientsRecyclerView() {
         binding.rvCocktailIngredients.apply {
