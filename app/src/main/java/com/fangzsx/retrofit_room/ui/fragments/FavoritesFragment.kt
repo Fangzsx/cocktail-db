@@ -62,7 +62,7 @@ class FavoritesFragment : Fragment() {
             MotionToast.createColorToast(requireActivity(),
                 "Deleted",
                 "${drink.strDrink} was removed from Favorites ${"\ud83d\ude2d"}",
-                MotionToastStyle.ERROR,
+                MotionToastStyle.DELETE,
                 MotionToast.GRAVITY_BOTTOM,
                 MotionToast.LONG_DURATION,
                 ResourcesCompat.getFont(requireActivity().applicationContext,R.font.oneplussans))
