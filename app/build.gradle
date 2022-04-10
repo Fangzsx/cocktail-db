@@ -91,4 +91,7 @@ dependencies {
     //advance recyclerview
     implementation 'com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:1.0.0'
 
+    //motion toast
+    implementation 'com.github.Spikeysanju:MotionToast:1.4'
+
 }
