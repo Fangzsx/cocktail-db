@@ -1,23 +1,23 @@
 package com.fangzsx.retrofit_room.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.fangzsx.retrofit_room.adapters.FavoritesAdapter
-import com.fangzsx.retrofit_room.databinding.FavoriteItemBinding
 import com.fangzsx.retrofit_room.databinding.FragmentFavoritesBinding
 import com.fangzsx.retrofit_room.db.DrinkDatabase
 import com.fangzsx.retrofit_room.repo.DrinkRepository
 import com.fangzsx.retrofit_room.viewmodels.FavoritesFragmentViewModel
 import com.fangzsx.retrofit_room.viewmodels.factory.FavoritesFragmentVMFactory
+import com.h6ah4i.android.widget.advrecyclerview.animator.SwipeDismissItemAnimator
 import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeManager
-import com.h6ah4i.android.widget.advrecyclerview.swipeable.SwipeableItemAdapter
+import com.h6ah4i.android.widget.advrecyclerview.touchguard.RecyclerViewTouchActionGuardManager
 
 
 class FavoritesFragment : Fragment() {
@@ -45,16 +45,18 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = binding.rvFavorites
-        val swipeManager = RecyclerViewSwipeManager()
-
         favoritesVM.viewDrinks().observe(viewLifecycleOwner){
             favoritesAdapter.differ.submitList(it)
         }
 
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = swipeManager.createWrappedAdapter(favoritesAdapter)
-        swipeManager.attachRecyclerView(recyclerView)
+        binding.rvFavorites.apply {
+            layoutManager = GridLayoutManager(activity, 4, GridLayoutManager.VERTICAL,false)
+            adapter = favoritesAdapter
+        }
+
+        favoritesAdapter.onDeleteItemClick = {
+            Toast.makeText(activity, "${it.strDrink} deleted.", Toast.LENGTH_SHORT).show()
+        }
 
     }
 

@@ -1,33 +1,21 @@
 package com.fangzsx.retrofit_room.adapters
 
+import android.text.Layout
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.fangzsx.retrofit_room.databinding.FavoriteItemBinding
 import com.fangzsx.retrofit_room.model.Drink
-import com.h6ah4i.android.widget.advrecyclerview.swipeable.SwipeableItemAdapter
-import com.h6ah4i.android.widget.advrecyclerview.swipeable.SwipeableItemConstants
-import com.h6ah4i.android.widget.advrecyclerview.swipeable.action.SwipeResultAction
-import com.h6ah4i.android.widget.advrecyclerview.swipeable.action.SwipeResultActionDefault
-import com.h6ah4i.android.widget.advrecyclerview.swipeable.action.SwipeResultActionRemoveItem
-import com.h6ah4i.android.widget.advrecyclerview.utils.AbstractSwipeableItemViewHolder
 
-class FavoritesAdapter : RecyclerView.Adapter<FavoritesAdapter.CocktailViewHolder>() , SwipeableItemAdapter<FavoritesAdapter.CocktailViewHolder> {
+class FavoritesAdapter : RecyclerView.Adapter<FavoritesAdapter.DrinkViewHolder>() {
 
+    var onDeleteItemClick : ((Drink) -> Unit)? = null
 
-    init {
-        setHasStableIds(true)
-    }
-
-    inner class CocktailViewHolder(val binding : FavoriteItemBinding) : AbstractSwipeableItemViewHolder(binding.root) {
-        override fun getSwipeableContainerView(): View {
-            return binding.clContainer
-        }
-    }
+    inner class DrinkViewHolder(val binding : FavoriteItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val differCallback = object : DiffUtil.ItemCallback<Drink>(){
         override fun areItemsTheSame(oldItem: Drink, newItem: Drink): Boolean {
@@ -40,8 +28,8 @@ class FavoritesAdapter : RecyclerView.Adapter<FavoritesAdapter.CocktailViewHolde
     }
 
     var differ = AsyncListDiffer(this, differCallback)
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CocktailViewHolder {
-        return CocktailViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinkViewHolder {
+        return DrinkViewHolder(
             FavoriteItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -50,55 +38,24 @@ class FavoritesAdapter : RecyclerView.Adapter<FavoritesAdapter.CocktailViewHolde
         )
     }
 
-    override fun onBindViewHolder(holder: CocktailViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DrinkViewHolder, position: Int) {
         val drink = differ.currentList[position]
-
         holder.binding.apply {
-            ivItem.load(drink.strDrinkThumb)
+            tvItem.text = drink.strDrink
+            ivItem.load(drink.strDrinkThumb){
+                crossfade(true)
+                crossfade(1000)
+            }
+
+            btnDelete.setOnClickListener {
+                onDeleteItemClick!!.invoke(drink)
+            }
         }
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
-
-    override fun onGetSwipeReactionType(
-        holder: CocktailViewHolder,
-        position: Int,
-        x: Int,
-        y: Int
-    ): Int {
-        return SwipeableItemConstants.REACTION_CAN_NOT_SWIPE_BOTH_H
-    }
-
-    override fun onSwipeItemStarted(holder: CocktailViewHolder, position: Int) {
-
-    }
-
-    override fun onSetSwipeBackground(holder: CocktailViewHolder, position: Int, type: Int) {
-
-    }
-
-    override fun onSwipeItem(
-        holder: CocktailViewHolder,
-        position: Int,
-        result: Int
-    ): SwipeResultAction? {
-        return if(result == SwipeableItemConstants.RESULT_CANCELED){
-            SwipeResultActionDefault()
-        }else{
-            MySwipeResultActionRemoveItem(this, position)
-        }
-
-    }
-
-    class MySwipeResultActionRemoveItem(private val adapter : FavoritesAdapter, private val position: Int) : SwipeResultActionRemoveItem() {
-        override fun onPerformAction() {
-            adapter.differ.currentList.removeAt(position)
-        }
-    }
-
-
 
 
 }
