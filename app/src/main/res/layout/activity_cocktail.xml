@@ -109,7 +109,7 @@
                     android:fontFamily="@font/oneplussans"
                     android:textSize="@dimen/_12ssp"
                     android:background="@drawable/tag_bg"
-                    android:backgroundTint="#673AB7"
+                    android:backgroundTint="#3F51B5"
                     android:textColor="@color/white"/>
             </LinearLayout>
 
