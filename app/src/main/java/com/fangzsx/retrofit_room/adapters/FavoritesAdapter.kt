@@ -14,6 +14,7 @@ import com.fangzsx.retrofit_room.model.Drink
 class FavoritesAdapter : RecyclerView.Adapter<FavoritesAdapter.DrinkViewHolder>() {
 
     var onDeleteItemClick : ((Drink) -> Unit)? = null
+    var onItemClick : ((Drink) -> Unit)? = null
 
     inner class DrinkViewHolder(val binding : FavoriteItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -50,6 +51,10 @@ class FavoritesAdapter : RecyclerView.Adapter<FavoritesAdapter.DrinkViewHolder>(
             btnDelete.setOnClickListener {
                 onDeleteItemClick!!.invoke(drink)
             }
+        }
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(drink)
         }
     }
 

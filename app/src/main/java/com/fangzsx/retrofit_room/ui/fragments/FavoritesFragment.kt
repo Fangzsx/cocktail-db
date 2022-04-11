@@ -1,5 +1,6 @@
 package com.fangzsx.retrofit_room.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.fangzsx.retrofit_room.adapters.FavoritesAdapter
 import com.fangzsx.retrofit_room.databinding.FragmentFavoritesBinding
 import com.fangzsx.retrofit_room.db.DrinkDatabase
 import com.fangzsx.retrofit_room.repo.DrinkRepository
+import com.fangzsx.retrofit_room.ui.activities.CocktailActivity
 import com.fangzsx.retrofit_room.viewmodels.FavoritesFragmentViewModel
 import com.fangzsx.retrofit_room.viewmodels.factory.FavoritesFragmentVMFactory
 import com.h6ah4i.android.widget.advrecyclerview.animator.SwipeDismissItemAnimator
@@ -69,7 +71,13 @@ class FavoritesFragment : Fragment() {
                 MotionToast.GRAVITY_BOTTOM,
                 MotionToast.LONG_DURATION,
                 ResourcesCompat.getFont(requireActivity().applicationContext,R.font.oneplussans))
+        }
 
+        favoritesAdapter.onItemClick = { drink ->
+            Intent(activity, CocktailActivity::class.java).apply {
+                putExtra("ID", drink.idDrink)
+                startActivity(this)
+            }
         }
 
     }
