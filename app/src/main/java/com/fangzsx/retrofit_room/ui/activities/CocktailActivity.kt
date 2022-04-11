@@ -111,6 +111,7 @@ class CocktailActivity : AppCompatActivity() {
         //add to favorites
         binding.fabAdd.setOnClickListener {
 
+
             cocktailVM.addDrink(drink)
             MotionToast.createColorToast(this,
                 "Added",

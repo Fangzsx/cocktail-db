@@ -28,11 +28,12 @@ class FavoritesFragment : Fragment() {
     private lateinit var binding : FragmentFavoritesBinding
     private lateinit var favoritesVM : FavoritesFragmentViewModel
     private lateinit var favoritesAdapter : FavoritesAdapter
+    private lateinit var drinkRepository: DrinkRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val drinkRepository : DrinkRepository = DrinkRepository(DrinkDatabase.getInstance(requireActivity()).getDrinkDao())
+         drinkRepository = DrinkRepository(DrinkDatabase.getInstance(requireActivity()).getDrinkDao())
         val favoritesVMFactory : FavoritesFragmentVMFactory = FavoritesFragmentVMFactory(drinkRepository)
         favoritesVM = ViewModelProvider(this, favoritesVMFactory).get(FavoritesFragmentViewModel::class.java)
         favoritesAdapter = FavoritesAdapter()
@@ -59,6 +60,8 @@ class FavoritesFragment : Fragment() {
         }
 
         favoritesAdapter.onDeleteItemClick = { drink ->
+
+            favoritesVM.deleteDrink(drink)
             MotionToast.createColorToast(requireActivity(),
                 "Deleted",
                 "${drink.strDrink} was removed from Favorites ${"\ud83d\ude2d"}",
