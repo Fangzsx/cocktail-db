@@ -1,9 +1,7 @@
 package com.fangzsx.retrofit_room.ui.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -19,6 +17,9 @@ import com.fangzsx.retrofit_room.model.Drink
 import com.fangzsx.retrofit_room.repo.DrinkRepository
 import com.fangzsx.retrofit_room.viewmodels.CocktailActivityViewModel
 import com.fangzsx.retrofit_room.viewmodels.factory.CocktailActivityVMFactory
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -26,12 +27,14 @@ import kotlinx.coroutines.launch
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
 
+
 class CocktailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityCocktailBinding
     private lateinit var cocktailVM : CocktailActivityViewModel
     private lateinit var drinkRepository : DrinkRepository
     private lateinit var cocktailVMFactory : CocktailActivityVMFactory
     private lateinit var cocktailIngredientAdapter : CocktailIngredientsAdapter
+    private lateinit var youtubePlayerView : YouTubePlayerView
 
     override fun onBackPressed() {
         finish()
@@ -42,19 +45,19 @@ class CocktailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCocktailBinding.inflate(layoutInflater)
 
-        lifecycle.addObserver(binding.youtubePlayer)
-
         drinkRepository = DrinkRepository(DrinkDatabase.getInstance(this).getDrinkDao())
         cocktailVMFactory = CocktailActivityVMFactory(drinkRepository)
-
         cocktailVM = ViewModelProvider(this, cocktailVMFactory).get(CocktailActivityViewModel::class.java)
         cocktailIngredientAdapter = CocktailIngredientsAdapter()
+
+        //add youtube to observers
+        youtubePlayerView = binding.youtubePlayer
+        lifecycle.addObserver(youtubePlayerView)
         setContentView(binding.root)
 
         loading()
         val id = intent.getStringExtra("ID")
         cocktailVM.getCocktailByID(id)
-
         cocktailVM.drink.observe(this){ drink ->
             //add delay 1sec
             CoroutineScope(Dispatchers.Main).launch {
@@ -63,8 +66,14 @@ class CocktailActivity : AppCompatActivity() {
                 success()
             }
         }
-        
 
+        //youtube
+        youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                val videoId = "S0Q4gqBUs7c"
+                youTubePlayer.loadVideo(videoId, 0f)
+            }
+        })
 
     }
 
