@@ -110,20 +110,7 @@ class CocktailActivity : AppCompatActivity() {
         
         //add to favorites
         binding.fabAdd.setOnClickListener {
-
-            cocktailVM.checkExists(drink.idDrink)
-            cocktailVM.isExisting.observe(this){
-                Log.d("debug", it.toString())
-            }
-
-            cocktailVM.addDrink(drink)
-            MotionToast.createColorToast(this,
-                "Added",
-                "${drink.strDrink} is now available on Favorites! \ud83d\ude0d",
-                MotionToastStyle.SUCCESS,
-                MotionToast.GRAVITY_BOTTOM,
-                MotionToast.LONG_DURATION,
-                ResourcesCompat.getFont(this,R.font.oneplussans))
+            addToDatabase(drink)
         }
 
         //change color of alcoholic bg
@@ -150,6 +137,36 @@ class CocktailActivity : AppCompatActivity() {
         cocktailIngredientAdapter.submitMeasurementList(measurements)
         setUpIngredientsRecyclerView()
 
+    }
+
+    private fun addToDatabase(drink: Drink) {
+        cocktailVM.checkExists(drink.idDrink)
+        cocktailVM.isExisting.observe(this) { isExisting ->
+
+            //check exist first before adding
+            if (isExisting) {
+                MotionToast.createColorToast(
+                    this,
+                    "EXISTING",
+                    "${drink.strDrink} is already in your Favorites! \ud83d\ude0f",
+                    MotionToastStyle.WARNING,
+                    MotionToast.GRAVITY_BOTTOM,
+                    MotionToast.LONG_DURATION,
+                    ResourcesCompat.getFont(this, R.font.oneplussans)
+                )
+            } else {
+                cocktailVM.addDrink(drink)
+                MotionToast.createColorToast(
+                    this,
+                    "ADDED",
+                    "${drink.strDrink} is now available on Favorites! \ud83d\ude0d",
+                    MotionToastStyle.SUCCESS,
+                    MotionToast.GRAVITY_BOTTOM,
+                    MotionToast.LONG_DURATION,
+                    ResourcesCompat.getFont(this, R.font.oneplussans)
+                )
+            }
+        }
     }
 
 

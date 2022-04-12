@@ -50,100 +50,103 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/_10sdp">
-        <TextView
-            android:id="@+id/tv_ingredient"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:layout_constraintTop_toBottomOf="@id/ll_tags"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="INGREDIENTS"
-            android:textStyle="bold"
-            android:fontFamily="@font/oneplussans"
-            android:textSize="@dimen/_12ssp"
-            android:textColor="?colorOnPrimary" />
+
 
             <LinearLayout
-                android:id="@+id/ll_tags"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@id/tv_ingredient"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
                 app:layout_constraintTop_toTopOf="parent"
-                android:orientation="horizontal">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!--tags-->
+                <LinearLayout
+                    android:id="@+id/ll_tags"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_tags"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TAGS"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/oneplussans"
+                        android:textColor="?colorOnPrimary"/>
+
+                    <TextView
+                        android:id="@+id/tv_alcoholic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingEnd  ="@dimen/_6sdp"
+                        android:fontFamily="@font/oneplussans"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        android:background="@drawable/tag_bg"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/tv_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingEnd  ="@dimen/_6sdp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/oneplussans"
+                        android:textSize="@dimen/_12ssp"
+                        android:background="@drawable/tag_bg"
+                        android:backgroundTint="#3F51B5"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tv_tags"
+                    android:id="@+id/tv_ingredient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TAGS"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="INGREDIENTS"
                     android:textStyle="bold"
-                    android:textSize="@dimen/_12ssp"
                     android:fontFamily="@font/oneplussans"
-                    android:textColor="?colorOnPrimary"/>
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="?colorOnPrimary" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_cocktail_ingredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"/>
 
                 <TextView
-                    android:id="@+id/tv_alcoholic"
+                    android:id="@+id/tv_procedure_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/_3sdp"
-                    android:paddingBottom="@dimen/_3sdp"
-                    android:paddingStart="@dimen/_5sdp"
-                    android:paddingEnd  ="@dimen/_6sdp"
+                    android:text="PROCEDURE"
                     android:fontFamily="@font/oneplussans"
-                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
-                    android:background="@drawable/tag_bg"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:textColor="@color/white"/>
+                    android:textColor="?colorOnPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_marginTop="@dimen/_10sdp"/>
 
                 <TextView
-                    android:id="@+id/tv_category"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_procedure"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/_3sdp"
-                    android:paddingBottom="@dimen/_3sdp"
-                    android:paddingStart="@dimen/_5sdp"
-                    android:paddingEnd  ="@dimen/_6sdp"
-                    android:textStyle="bold"
                     android:fontFamily="@font/oneplussans"
-                    android:textSize="@dimen/_12ssp"
-                    android:background="@drawable/tag_bg"
-                    android:backgroundTint="#3F51B5"
-                    android:textColor="@color/white"/>
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="?colorOnPrimary"
+                    android:layout_marginTop="@dimen/_10sdp"/>
             </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_cocktail_ingredients"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintTop_toBottomOf="@id/tv_ingredient"
-                app:layout_constraintStart_toStartOf="@id/ll_tags"/>
-
-            <TextView
-                android:id="@+id/tv_procedure_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/rv_cocktail_ingredients"
-                app:layout_constraintStart_toStartOf="@id/rv_cocktail_ingredients"
-                android:text="PROCEDURE"
-                android:fontFamily="@font/oneplussans"
-                android:textStyle="bold"
-                android:textColor="?colorOnPrimary"
-                android:textSize="@dimen/_12ssp"
-                android:layout_marginTop="@dimen/_10sdp"/>
-
-            <TextView
-                android:id="@+id/tv_procedure"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/oneplussans"
-                android:textSize="@dimen/_10sdp"
-                android:textColor="?colorOnPrimary"
-                app:layout_constraintTop_toBottomOf="@id/tv_procedure_label"
-                app:layout_constraintStart_toStartOf="@id/tv_procedure_label"
-                android:layout_marginTop="@dimen/_10sdp"/>
 
             <com.bitvale.lightprogress.LightProgress
                 android:id="@+id/loading"
