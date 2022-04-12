@@ -42,6 +42,8 @@ class CocktailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCocktailBinding.inflate(layoutInflater)
 
+        lifecycle.addObserver(binding.youtubePlayer)
+
         drinkRepository = DrinkRepository(DrinkDatabase.getInstance(this).getDrinkDao())
         cocktailVMFactory = CocktailActivityVMFactory(drinkRepository)
 

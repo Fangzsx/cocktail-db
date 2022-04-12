@@ -53,6 +53,7 @@
 
 
             <LinearLayout
+                android:id="@+id/tv_procedure_label"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -111,6 +112,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_ingredient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -156,13 +158,12 @@
                     android:layout_marginTop="@dimen/_10sdp"/>
 
                 <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/youtube_player"
+                    app:enableAutomaticInitialization="true"
+                    app:videoId="1VOWybJxQz0"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_200sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"/>
-
-
-
-
             </LinearLayout>
 
             <com.bitvale.lightprogress.LightProgress
