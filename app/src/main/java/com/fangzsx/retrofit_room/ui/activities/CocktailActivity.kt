@@ -111,6 +111,10 @@ class CocktailActivity : AppCompatActivity() {
         //add to favorites
         binding.fabAdd.setOnClickListener {
 
+            cocktailVM.checkExists(drink.idDrink)
+            cocktailVM.isExisting.observe(this){
+                Log.d("debug", it.toString())
+            }
 
             cocktailVM.addDrink(drink)
             MotionToast.createColorToast(this,
@@ -146,16 +150,6 @@ class CocktailActivity : AppCompatActivity() {
         cocktailIngredientAdapter.submitMeasurementList(measurements)
         setUpIngredientsRecyclerView()
 
-    }
-
-    private fun isExisting(list : List<Drink>, drink : Drink) : Boolean{
-        var bool : Boolean = false
-        list.forEach { itemDrink ->
-            if(itemDrink.idDrink == drink.idDrink){
-                bool = true
-            }
-        }
-        return bool
     }
 
 

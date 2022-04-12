@@ -21,6 +21,13 @@ class CocktailActivityViewModel(
     val drink : LiveData<Drink> = _drink
     private val TAG = "CocktailActivityViewModel"
 
+    private val _isExisting : MutableLiveData<Boolean> = MutableLiveData()
+    val isExisting : LiveData<Boolean> = _isExisting
+
+    fun checkExists(idDrink : String) = viewModelScope.launch {
+        _isExisting.postValue(drinkRepository.isExisting(idDrink))
+    }
+
     fun getCocktailByID(id : String?) = viewModelScope.launch {
         val response = try{
             RetrofitInstance.cocktailApi.getCocktailByID(id)

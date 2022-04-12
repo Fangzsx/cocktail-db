@@ -16,4 +16,7 @@ interface DrinkDao {
     @Query("SELECT * FROM drinks")
     fun getAllDrinks() : LiveData<List<Drink>>
 
+    @Query("SELECT EXISTS(SELECT * FROM drinks WHERE idDrink =:idDrink)")
+    suspend fun checkExist(idDrink : String) : Boolean
+
 }
