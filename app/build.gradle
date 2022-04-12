@@ -94,4 +94,7 @@ dependencies {
     //motion toast
     implementation 'com.github.Spikeysanju:MotionToast:1.4'
 
+    //youtube player by pierfrancescosoffritti
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1'
+
 }
