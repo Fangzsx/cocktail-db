@@ -32,6 +32,7 @@ class CocktailActivity : AppCompatActivity() {
     private lateinit var cocktailVMFactory : CocktailActivityVMFactory
     private lateinit var cocktailIngredientAdapter : CocktailIngredientsAdapter
 
+
     override fun onBackPressed() {
         finish()
     }
@@ -49,10 +50,9 @@ class CocktailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loading()
+
         val id = intent.getStringExtra("ID")
         cocktailVM.getCocktailByID(id)
-
-
         cocktailVM.drink.observe(this){ drink ->
 
             //add delay 1sec
@@ -64,6 +64,7 @@ class CocktailActivity : AppCompatActivity() {
         }
 
     }
+
 
     private fun success() {
 
@@ -100,9 +101,6 @@ class CocktailActivity : AppCompatActivity() {
     }
 
     private fun setCocktailDataIntoView(drink: Drink) {
-
-
-
         binding.ivCocktail.load(drink.strDrinkThumb) {
             crossfade(true)
             crossfade(1000)

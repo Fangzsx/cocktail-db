@@ -5,12 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.fangzsx.retrofit_room.R
 import com.fangzsx.retrofit_room.adapters.FavoritesAdapter
 import com.fangzsx.retrofit_room.databinding.FragmentFavoritesBinding
@@ -19,9 +17,6 @@ import com.fangzsx.retrofit_room.repo.DrinkRepository
 import com.fangzsx.retrofit_room.ui.activities.CocktailActivity
 import com.fangzsx.retrofit_room.viewmodels.FavoritesFragmentViewModel
 import com.fangzsx.retrofit_room.viewmodels.factory.FavoritesFragmentVMFactory
-import com.h6ah4i.android.widget.advrecyclerview.animator.SwipeDismissItemAnimator
-import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeManager
-import com.h6ah4i.android.widget.advrecyclerview.touchguard.RecyclerViewTouchActionGuardManager
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
 
