@@ -1,8 +1,10 @@
 package com.fangzsx.retrofit_room.ui.activities
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.MediaController
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -28,6 +30,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
+import java.net.URI
 
 
 class CocktailActivity : AppCompatActivity() {
@@ -36,7 +39,6 @@ class CocktailActivity : AppCompatActivity() {
     private lateinit var drinkRepository : DrinkRepository
     private lateinit var cocktailVMFactory : CocktailActivityVMFactory
     private lateinit var cocktailIngredientAdapter : CocktailIngredientsAdapter
-    private lateinit var youtubePlayerView : YouTubePlayerView
 
     override fun onBackPressed() {
         finish()
@@ -52,9 +54,6 @@ class CocktailActivity : AppCompatActivity() {
         cocktailVM = ViewModelProvider(this, cocktailVMFactory).get(CocktailActivityViewModel::class.java)
         cocktailIngredientAdapter = CocktailIngredientsAdapter()
 
-        //add youtube to observers
-        youtubePlayerView = binding.youtubePlayer
-        lifecycle.addObserver(youtubePlayerView)
         setContentView(binding.root)
 
         loading()
@@ -63,8 +62,8 @@ class CocktailActivity : AppCompatActivity() {
 
 
         cocktailVM.drink.observe(this){ drink ->
-            //add delay 1sec
 
+            //add delay 1sec
             CoroutineScope(Dispatchers.Main).launch {
                 delay(1000)
                 setCocktailDataIntoView(drink)
@@ -87,7 +86,7 @@ class CocktailActivity : AppCompatActivity() {
             rvCocktailIngredients.visibility = View.VISIBLE
         }
 
-        youtubePlayerView.visibility = View.VISIBLE
+
     }
 
     private fun loading() {
@@ -96,7 +95,6 @@ class CocktailActivity : AppCompatActivity() {
             on()
         }
 
-        youtubePlayerView.visibility = View.INVISIBLE
         
         binding.apply {
             tvAlcoholic.visibility = View.INVISIBLE
@@ -111,12 +109,7 @@ class CocktailActivity : AppCompatActivity() {
 
     private fun setCocktailDataIntoView(drink: Drink) {
 
-        cocktailVM.getYoutubeVideoID(drink.strDrink)
-        cocktailVM.youtubeVideoID.observe(this){ youtubeVideo ->
-            Log.d("debug", youtubeVideo.id.videoId)
 
-            youtubePlayerView.set
-        }
 
         binding.ivCocktail.load(drink.strDrinkThumb) {
             crossfade(true)
