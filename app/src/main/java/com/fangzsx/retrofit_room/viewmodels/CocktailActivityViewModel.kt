@@ -1,12 +1,12 @@
 package com.fangzsx.retrofit_room.viewmodels
 
-import android.nfc.Tag
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fangzsx.retrofit_room.model.Drink
+import com.fangzsx.retrofit_room.model.youtube.Item
 import com.fangzsx.retrofit_room.repo.DrinkRepository
 import com.fangzsx.retrofit_room.retrofit.RetrofitInstance
 import kotlinx.coroutines.launch
@@ -19,8 +19,8 @@ class CocktailActivityViewModel(
 
     private val _drink : MutableLiveData<Drink> = MutableLiveData()
     val drink : LiveData<Drink> = _drink
-    private var _youtubeVideoID : MutableLiveData<String> = MutableLiveData()
-    val youtubeVideoID : LiveData<String> = _youtubeVideoID
+    private var _youtubeVideoID : MutableLiveData<Item> = MutableLiveData()
+    val youtubeVideoID : LiveData<Item> = _youtubeVideoID
 
     private val TAG = "CocktailActivityViewModel"
 
@@ -33,7 +33,12 @@ class CocktailActivityViewModel(
     fun getYoutubeVideoID(strDrink : String) = viewModelScope.launch {
         //catch errors
         val response = try{
-            RetrofitInstance.youtubeApi.searchForTrailer(query = strDrink, apiKey = "AIzaSyBrH7VTA4nFMix6UAZQ7-G8kwGfmyUx-4o")
+            RetrofitInstance.youtubeApi.searchForVideo(
+                "snippet",
+                1,
+                "relevance",
+                "$strDrink cocktail preparation guide",
+                "AIzaSyBrH7VTA4nFMix6UAZQ7-G8kwGfmyUx-4o")
         }catch (e : IOException){
             Log.e(TAG,"Internet Connection Error")
             return@launch
@@ -44,11 +49,11 @@ class CocktailActivityViewModel(
 
         //if successful
         if(response.isSuccessful){
-            response.body()?.let {
-                _youtubeVideoID.postValue(it.items[0].id.videoId)
+            response.body()?.let { youtubeResponse ->
+                _youtubeVideoID.postValue(youtubeResponse.items[0])
             }
         }else{
-            Log.e(TAG,"Response not Successful")
+            Log.e(TAG,"Response not Successful: ${response.errorBody().toString()}")
         }
     }
 
@@ -59,7 +64,6 @@ class CocktailActivityViewModel(
     fun getCocktailByID(id : String?) = viewModelScope.launch {
         val response = try{
             RetrofitInstance.cocktailApi.getCocktailByID(id)
-
         }catch (e : IOException){
             Log.e(TAG, "Internet connection Error")
             return@launch

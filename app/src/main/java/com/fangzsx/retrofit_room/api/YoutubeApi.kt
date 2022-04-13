@@ -7,11 +7,11 @@ import retrofit2.http.Query
 
 interface YoutubeApi {
 
-    @GET("v3/search")
-    suspend fun searchForTrailer(
-        @Query("part") part : String = "snippet",
-        @Query("maxResults") noOfResult : Int = 1,
-        @Query("order") orderBy : String = "relevance",
+    @GET("search")
+    suspend fun searchForVideo(
+        @Query("part") part : String,
+        @Query("maxResults") noOfResult : Int,
+        @Query("order") orderBy : String,
         @Query("q") query : String,
         @Query("key") apiKey : String
     ) : Response<YoutubeResponse>

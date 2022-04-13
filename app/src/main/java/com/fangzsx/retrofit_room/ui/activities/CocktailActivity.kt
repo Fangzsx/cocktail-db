@@ -1,7 +1,9 @@
 package com.fangzsx.retrofit_room.ui.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -58,8 +60,11 @@ class CocktailActivity : AppCompatActivity() {
         loading()
         val id = intent.getStringExtra("ID")
         cocktailVM.getCocktailByID(id)
+
+
         cocktailVM.drink.observe(this){ drink ->
             //add delay 1sec
+
             CoroutineScope(Dispatchers.Main).launch {
                 delay(1000)
                 setCocktailDataIntoView(drink)
@@ -105,6 +110,14 @@ class CocktailActivity : AppCompatActivity() {
     }
 
     private fun setCocktailDataIntoView(drink: Drink) {
+
+        cocktailVM.getYoutubeVideoID(drink.strDrink)
+        cocktailVM.youtubeVideoID.observe(this){ youtubeVideo ->
+            Log.d("debug", youtubeVideo.id.videoId)
+
+            youtubePlayerView.set
+        }
+
         binding.ivCocktail.load(drink.strDrinkThumb) {
             crossfade(true)
             crossfade(1000)
