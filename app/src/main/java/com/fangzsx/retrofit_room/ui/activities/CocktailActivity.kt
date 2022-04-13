@@ -67,14 +67,6 @@ class CocktailActivity : AppCompatActivity() {
             }
         }
 
-        //youtube
-        youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-                val videoId = "S0Q4gqBUs7c"
-                youTubePlayer.cueVideo(videoId, 0f)
-            }
-        })
-
     }
 
     private fun success() {
@@ -89,6 +81,8 @@ class CocktailActivity : AppCompatActivity() {
             tvTags.visibility = View.VISIBLE
             rvCocktailIngredients.visibility = View.VISIBLE
         }
+
+        youtubePlayerView.visibility = View.VISIBLE
     }
 
     private fun loading() {
@@ -96,6 +90,8 @@ class CocktailActivity : AppCompatActivity() {
             visibility = View.VISIBLE
             on()
         }
+
+        youtubePlayerView.visibility = View.INVISIBLE
         
         binding.apply {
             tvAlcoholic.visibility = View.INVISIBLE

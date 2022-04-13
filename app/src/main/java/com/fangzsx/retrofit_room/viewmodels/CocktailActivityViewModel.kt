@@ -19,10 +19,38 @@ class CocktailActivityViewModel(
 
     private val _drink : MutableLiveData<Drink> = MutableLiveData()
     val drink : LiveData<Drink> = _drink
+    private var _youtubeVideoID : MutableLiveData<String> = MutableLiveData()
+    val youtubeVideoID : LiveData<String> = _youtubeVideoID
+
     private val TAG = "CocktailActivityViewModel"
+
+
 
     private val _isExisting : MutableLiveData<Boolean> = MutableLiveData()
     val isExisting : LiveData<Boolean> = _isExisting
+
+
+    fun getYoutubeVideoID(strDrink : String) = viewModelScope.launch {
+        //catch errors
+        val response = try{
+            RetrofitInstance.youtubeApi.searchForTrailer(query = strDrink, apiKey = "AIzaSyBrH7VTA4nFMix6UAZQ7-G8kwGfmyUx-4o")
+        }catch (e : IOException){
+            Log.e(TAG,"Internet Connection Error")
+            return@launch
+        }catch (e : HttpException){
+            Log.e(TAG,"HTTP Exception: Unknown Response")
+            return@launch
+        }
+
+        //if successful
+        if(response.isSuccessful){
+            response.body()?.let {
+                _youtubeVideoID.postValue(it.items[0].id.videoId)
+            }
+        }else{
+            Log.e(TAG,"Response not Successful")
+        }
+    }
 
     fun checkExists(idDrink : String) = viewModelScope.launch {
         _isExisting.postValue(drinkRepository.isExisting(idDrink))
@@ -33,7 +61,7 @@ class CocktailActivityViewModel(
             RetrofitInstance.cocktailApi.getCocktailByID(id)
 
         }catch (e : IOException){
-            Log.e(TAG, "Error Internet connection")
+            Log.e(TAG, "Internet connection Error")
             return@launch
         }catch (e : HttpException){
             Log.e(TAG, "HTTP EXCEPTION: Unknown response")
