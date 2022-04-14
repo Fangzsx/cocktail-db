@@ -147,6 +147,25 @@
                     android:textColor="?colorOnPrimary"
                     android:layout_marginTop="@dimen/_10sdp"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VIDEO GUIDE"
+                    android:fontFamily="@font/oneplussans"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="?colorOnPrimary"
+                    android:layout_marginTop="@dimen/_10sdp"/>
+
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/youtube_player"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200sdp"
+                    app:enableAutomaticInitialization="true"
+                    android:layout_marginTop="@dimen/_10sdp"/>
+
+
+
             </LinearLayout>
 
             <com.bitvale.lightprogress.LightProgress

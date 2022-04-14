@@ -1,6 +1,7 @@
 package com.fangzsx.retrofit_room.ui.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -17,6 +18,8 @@ import com.fangzsx.retrofit_room.model.Drink
 import com.fangzsx.retrofit_room.repo.DrinkRepository
 import com.fangzsx.retrofit_room.viewmodels.CocktailActivityViewModel
 import com.fangzsx.retrofit_room.viewmodels.factory.CocktailActivityVMFactory
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -48,6 +51,13 @@ class CocktailActivity : AppCompatActivity() {
         cocktailIngredientAdapter = CocktailIngredientsAdapter()
 
         setContentView(binding.root)
+        lifecycle.addObserver(binding.youtubePlayer)
+
+
+        cocktailVM.getYoutubeVideoID("margarita")
+        cocktailVM.youtubeVideoID.observe(this){
+            Log.d("debug", it.id.videoId)
+        }
 
         loading()
 

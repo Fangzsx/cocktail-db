@@ -38,7 +38,7 @@ class CocktailActivityViewModel(
                 1,
                 "relevance",
                 "how to make $strDrink cocktail",
-                "AIzaSyBrH7VTA4nFMix6UAZQ7-G8kwGfmyUx-4o")
+                "AIzaSyASsMuDtirwhcrNvV8syrKlxSm-Wo4K480")
         }catch (e : IOException){
             Log.e(TAG,"Internet Connection Error")
             return@launch
