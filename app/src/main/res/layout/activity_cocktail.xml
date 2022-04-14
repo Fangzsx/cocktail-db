@@ -115,7 +115,7 @@
                     android:id="@+id/tv_ingredient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
                     android:text="INGREDIENTS"
                     android:textStyle="bold"
                     android:fontFamily="@font/oneplussans"
@@ -125,6 +125,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_cocktail_ingredients"
                     android:layout_width="match_parent"
+                    android:nestedScrollingEnabled="false"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"/>
 
@@ -136,7 +137,7 @@
                     android:textStyle="bold"
                     android:textColor="?colorOnPrimary"
                     android:textSize="@dimen/_12ssp"
-                    android:layout_marginTop="@dimen/_10sdp"/>
+                    android:layout_marginTop="@dimen/_30sdp"/>
 
                 <TextView
                     android:id="@+id/tv_procedure"
@@ -155,7 +156,7 @@
                     android:textStyle="bold"
                     android:textSize="@dimen/_12ssp"
                     android:textColor="?colorOnPrimary"
-                    android:layout_marginTop="@dimen/_10sdp"/>
+                    android:layout_marginTop="@dimen/_30sdp"/>
 
                 <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                     android:id="@+id/youtube_player"

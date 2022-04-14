@@ -65,7 +65,6 @@ class CocktailActivity : AppCompatActivity() {
         cocktailVM.drink.observe(this){ drink ->
 
             preloadYoutubePlayer(drink)
-
             //add delay 1sec
             CoroutineScope(Dispatchers.Main).launch {
                 delay(1000)

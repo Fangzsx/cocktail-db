@@ -55,7 +55,7 @@
                 app:ccll_child_corner_cut_type="oval_inverse"
                 app:ccll_custom_shadow_color="?colorSecondary"
                 app:ccll_custom_shadow_radius="16dp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -117,6 +117,7 @@
                 android:textSize="@dimen/_15ssp"
                 android:textColor="?colorOnPrimary"
                 android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recommendation_cc"/>
 
@@ -131,6 +132,7 @@
                 android:id="@+id/tv_drinks_by_ingredient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
                 app:layout_constraintTop_toBottomOf="@id/rv_popular"
                 app:layout_constraintStart_toStartOf="@id/tv_most_popular"
                 android:text="Drinks by Ingredient"
