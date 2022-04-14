@@ -18,7 +18,7 @@ class SearchFragmentViewModel : ViewModel() {
 
     private val TAG = "SearchFragmentViewModel"
 
-    fun search(query : String) = viewModelScope.launch {
+    fun search(query : String?) = viewModelScope.launch {
         val response = try{
             RetrofitInstance.cocktailApi.search(query)
         }catch (e : HttpException){

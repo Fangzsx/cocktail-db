@@ -34,7 +34,7 @@ interface CocktailApi {
     @GET("search.php")
     suspend fun search(
         @Query("s")
-        query: String
+        query: String?
     ) : Response<DrinkResponse>
 
 
