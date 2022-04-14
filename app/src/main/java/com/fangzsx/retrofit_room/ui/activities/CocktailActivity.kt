@@ -3,6 +3,7 @@ package com.fangzsx.retrofit_room.ui.activities
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -18,6 +19,7 @@ import com.fangzsx.retrofit_room.model.Drink
 import com.fangzsx.retrofit_room.repo.DrinkRepository
 import com.fangzsx.retrofit_room.viewmodels.CocktailActivityViewModel
 import com.fangzsx.retrofit_room.viewmodels.factory.CocktailActivityVMFactory
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import kotlinx.coroutines.CoroutineScope
@@ -54,16 +56,15 @@ class CocktailActivity : AppCompatActivity() {
         lifecycle.addObserver(binding.youtubePlayer)
 
 
-        cocktailVM.getYoutubeVideoID("margarita")
-        cocktailVM.youtubeVideoID.observe(this){
-            Log.d("debug", it.id.videoId)
-        }
+
 
         loading()
 
         val id = intent.getStringExtra("ID")
         cocktailVM.getCocktailByID(id)
         cocktailVM.drink.observe(this){ drink ->
+
+            preloadYoutubePlayer(drink)
 
             //add delay 1sec
             CoroutineScope(Dispatchers.Main).launch {
@@ -73,6 +74,27 @@ class CocktailActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun preloadYoutubePlayer(drink: Drink) {
+        cocktailVM.getYoutubeVideoID(drink.strDrink)
+        cocktailVM.youtubeVideoID.observe(this) {
+
+            binding.youtubePlayer.addYouTubePlayerListener(object :
+                AbstractYouTubePlayerListener() {
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+
+                    youTubePlayer.cueVideo(it.id.videoId, 0f)
+                }
+
+                override fun onError(
+                    youTubePlayer: YouTubePlayer,
+                    error: PlayerConstants.PlayerError
+                ) {
+                    youTubePlayer.cueVideo(it.id.videoId, 0f)
+                }
+            })
+        }
     }
 
 
@@ -115,6 +137,9 @@ class CocktailActivity : AppCompatActivity() {
             crossfade(true)
             crossfade(1000)
         }
+
+
+
 
         binding.clToolbar.title = drink.strDrink
         binding.tvProcedure.text = drink.strInstructions.replaceFirstChar { it.uppercase() }
