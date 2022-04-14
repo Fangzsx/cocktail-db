@@ -17,6 +17,8 @@ import com.fangzsx.retrofit_room.model.Drink
 import com.fangzsx.retrofit_room.repo.DrinkRepository
 import com.fangzsx.retrofit_room.viewmodels.CocktailActivityViewModel
 import com.fangzsx.retrofit_room.viewmodels.factory.CocktailActivityVMFactory
+import com.google.android.youtube.player.YouTubePlayerFragment
+import com.google.android.youtube.player.YouTubePlayerSupportFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -105,6 +107,10 @@ class CocktailActivity : AppCompatActivity() {
             crossfade(true)
             crossfade(1000)
         }
+
+
+
+
 
         binding.clToolbar.title = drink.strDrink
         binding.tvProcedure.text = drink.strInstructions.replaceFirstChar { it.uppercase() }
