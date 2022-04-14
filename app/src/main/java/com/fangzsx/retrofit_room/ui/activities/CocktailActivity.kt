@@ -235,7 +235,8 @@ class CocktailActivity : AppCompatActivity() {
         )
 
         //remove all null ingredient
-        list.removeAll(listOf(null))
+        list.removeAll { it.isNullOrEmpty() }
+
         return list
 
     }

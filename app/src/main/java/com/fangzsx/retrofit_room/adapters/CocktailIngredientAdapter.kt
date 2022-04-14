@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.fangzsx.retrofit_room.databinding.FlipItemBinding
-import com.wajahatkarim3.easyflipview.EasyFlipView
 
 class CocktailIngredientsAdapter : RecyclerView.Adapter<CocktailIngredientsAdapter.IngredientViewHolder>() {
 
