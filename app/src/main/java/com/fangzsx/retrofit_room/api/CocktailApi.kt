@@ -31,5 +31,11 @@ interface CocktailApi {
         ingredientName : String
     ) : Response<IngredientInfoResponse>
 
+    @GET("search.php")
+    suspend fun search(
+        @Query("s")
+        query: String
+    ) : Response<DrinkResponse>
+
 
 }

@@ -24,8 +24,6 @@ class CocktailActivityViewModel(
 
     private val TAG = "CocktailActivityViewModel"
 
-
-
     private val _isExisting : MutableLiveData<Boolean> = MutableLiveData()
     val isExisting : LiveData<Boolean> = _isExisting
 
