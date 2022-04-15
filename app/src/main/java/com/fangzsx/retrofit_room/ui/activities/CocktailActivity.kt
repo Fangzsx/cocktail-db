@@ -1,5 +1,7 @@
 package com.fangzsx.retrofit_room.ui.activities
 
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -54,9 +56,6 @@ class CocktailActivity : AppCompatActivity() {
 
         setContentView(binding.root)
         lifecycle.addObserver(binding.youtubePlayer)
-
-
-
 
         loading()
 

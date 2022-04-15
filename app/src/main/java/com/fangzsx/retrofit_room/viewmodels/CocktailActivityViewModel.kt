@@ -17,6 +17,14 @@ class CocktailActivityViewModel(
     private val drinkRepository: DrinkRepository
 ) : ViewModel() {
 
+    companion object {
+        init {
+            System.loadLibrary("keys")
+        }
+    }
+
+    external fun getApi() : String
+
     private val _drink : MutableLiveData<Drink> = MutableLiveData()
     val drink : LiveData<Drink> = _drink
     private var _youtubeVideoID : MutableLiveData<Item> = MutableLiveData()
@@ -27,16 +35,17 @@ class CocktailActivityViewModel(
     private val _isExisting : MutableLiveData<Boolean> = MutableLiveData()
     val isExisting : LiveData<Boolean> = _isExisting
 
-
     fun getYoutubeVideoID(strDrink : String) = viewModelScope.launch {
         //catch errors
+
         val response = try{
+
             RetrofitInstance.youtubeApi.searchForVideo(
                 "snippet",
                 1,
                 "relevance",
                 "how to make $strDrink cocktail",
-                "AIzaSyASsMuDtirwhcrNvV8syrKlxSm-Wo4K480")
+                getApi())
         }catch (e : IOException){
             Log.e(TAG,"Internet Connection Error")
             return@launch
@@ -51,7 +60,7 @@ class CocktailActivityViewModel(
                 _youtubeVideoID.postValue(youtubeResponse.items[0])
             }
         }else{
-            Log.e(TAG,"Response not Successful: ${response.errorBody().toString()}")
+            Log.e(TAG,"Response not Successful")
         }
     }
 

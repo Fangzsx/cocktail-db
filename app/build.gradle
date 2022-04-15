@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'com.google.secrets_gradle_plugin' version('0.4')
 }
 apply plugin: 'kotlin-android'
 
@@ -25,6 +24,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
+    }
+
+    ndkVersion '24.0.8215888'
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'//path of Android.mk file
+        }
     }
 
 
