@@ -45,7 +45,11 @@ class CocktailIngredientsAdapter : RecyclerView.Adapter<CocktailIngredientsAdapt
                 crossfade(true)
                 crossfade(1000)
             }
-            back.tvFlipIngredient.text = measurement
+            if(measurement.isNullOrEmpty()){
+                back.tvFlipIngredient.text = "As desired"
+            }else{
+                back.tvFlipIngredient.text = measurement
+            }
 
         }
 
