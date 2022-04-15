@@ -26,6 +26,14 @@
                 android:textSize="@dimen/_20ssp"
                 android:layout_margin="@dimen/_10sdp"/>
 
+            <ImageView
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:src="@drawable/cocktail_logo"
+                app:layout_constraintTop_toTopOf="@id/tv_header"
+                app:layout_constraintBottom_toBottomOf="@id/tv_header"
+                app:layout_constraintStart_toEndOf="@id/tv_header"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_favorites"
                 android:layout_width="wrap_content"
