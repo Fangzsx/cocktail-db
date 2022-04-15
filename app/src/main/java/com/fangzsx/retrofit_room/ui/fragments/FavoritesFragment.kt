@@ -9,6 +9,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.transition.TransitionInflater
 import com.fangzsx.retrofit_room.R
 import com.fangzsx.retrofit_room.adapters.FavoritesAdapter
 import com.fangzsx.retrofit_room.databinding.FragmentFavoritesBinding
@@ -34,6 +35,10 @@ class FavoritesFragment : Fragment() {
         val favoritesVMFactory : FavoritesFragmentVMFactory = FavoritesFragmentVMFactory(drinkRepository)
         favoritesVM = ViewModelProvider(this, favoritesVMFactory).get(FavoritesFragmentViewModel::class.java)
         favoritesAdapter = FavoritesAdapter()
+
+        val inflater = TransitionInflater.from(requireContext())
+        exitTransition = (inflater.inflateTransition(R.transition.fade))
+
     }
 
     override fun onCreateView(

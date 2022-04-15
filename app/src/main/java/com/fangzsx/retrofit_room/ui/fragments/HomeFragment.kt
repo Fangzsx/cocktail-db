@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.TransitionInflater
 import coil.load
+import com.fangzsx.retrofit_room.R
 import com.fangzsx.retrofit_room.adapters.IngredientAdapter
 import com.fangzsx.retrofit_room.adapters.PopularAdapter
 import com.fangzsx.retrofit_room.databinding.FragmentHomeBinding
@@ -32,6 +34,8 @@ class HomeFragment : Fragment() {
         popularAdapter = PopularAdapter()
         ingredientAdapter = IngredientAdapter()
 
+        val inflater = TransitionInflater.from(requireContext())
+        exitTransition = (inflater.inflateTransition(R.transition.fade))
     }
 
 

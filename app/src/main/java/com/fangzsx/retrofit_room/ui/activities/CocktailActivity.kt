@@ -136,10 +136,6 @@ class CocktailActivity : AppCompatActivity() {
             crossfade(true)
             crossfade(1000)
         }
-
-
-
-
         binding.clToolbar.title = drink.strDrink
         binding.tvProcedure.text = drink.strInstructions.replaceFirstChar { it.uppercase() }
         binding.tvAlcoholic.text = drink.strAlcoholic
@@ -185,7 +181,7 @@ class CocktailActivity : AppCompatActivity() {
                 MotionToast.createColorToast(
                     this,
                     "EXISTING",
-                    "${drink.strDrink} is already in your Favorites! \ud83d\ude0f",
+                    "${drink.strDrink} is already on your Favorites!",
                     MotionToastStyle.WARNING,
                     MotionToast.GRAVITY_BOTTOM,
                     MotionToast.LONG_DURATION,
@@ -196,7 +192,7 @@ class CocktailActivity : AppCompatActivity() {
                 MotionToast.createColorToast(
                     this,
                     "ADDED",
-                    "${drink.strDrink} is now available on Favorites! \ud83d\ude0d",
+                    "${drink.strDrink} is now available on Favorites! ",
                     MotionToastStyle.SUCCESS,
                     MotionToast.GRAVITY_BOTTOM,
                     MotionToast.LONG_DURATION,

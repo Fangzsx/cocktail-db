@@ -15,6 +15,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.transition.TransitionInflater
 import com.fangzsx.retrofit_room.R
 import com.fangzsx.retrofit_room.adapters.SearchResultAdapter
 import com.fangzsx.retrofit_room.databinding.FragmentSearchBinding
@@ -32,8 +33,12 @@ class SearchFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         searchVM = ViewModelProvider(this).get(SearchFragmentViewModel::class.java)
         searchResultsAdapter = SearchResultAdapter()
+
+        val inflater = TransitionInflater.from(requireContext())
+        exitTransition = (inflater.inflateTransition(R.transition.fade))
     }
 
     override fun onCreateView(

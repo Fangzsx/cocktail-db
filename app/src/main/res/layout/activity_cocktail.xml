@@ -21,6 +21,7 @@
             app:collapsedTitleTextAppearance="@style/MyCollapsedTitle">
             <ImageView
                 android:id="@+id/iv_cocktail"
+                android:background="?colorSecondary"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_collapseMode="parallax"
