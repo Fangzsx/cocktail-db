@@ -66,7 +66,7 @@ class FavoritesFragment : Fragment() {
             favoritesVM.deleteDrink(drink)
             MotionToast.createColorToast(requireActivity(),
                 "Deleted",
-                "${drink.strDrink} was removed from Favorites ${"\ud83d\ude2d"}",
+                "${drink.strDrink} removed from Favorites",
                 MotionToastStyle.DELETE,
                 MotionToast.GRAVITY_BOTTOM,
                 MotionToast.LONG_DURATION,

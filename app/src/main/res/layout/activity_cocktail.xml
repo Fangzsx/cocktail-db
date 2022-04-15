@@ -125,8 +125,9 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_cocktail_ingredients"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:nestedScrollingEnabled="false"
+                    android:layout_gravity="center"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"/>
 

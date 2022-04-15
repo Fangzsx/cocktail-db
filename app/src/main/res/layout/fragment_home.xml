@@ -43,7 +43,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="@dimen/_10sdp">
 
             <io.devlight.xtreeivi.cornercutlinearlayout.CornerCutLinearLayout
                 android:id="@+id/recommendation_cc"
@@ -88,26 +89,15 @@
                 android:id="@+id/tv_recommendation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:rotation="-90"
                 android:text="Recommendation"
+                android:textStyle="bold"
                 android:fontFamily="@font/oneplussans"
                 android:textSize="@dimen/_15ssp"
                 android:textColor="?colorOnPrimary"
                 android:layout_marginStart="@dimen/_10sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/recommendation_cc"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/recommendation_cc" />
-
-            <ImageView
-                android:layout_width="@dimen/_12sdp"
-                android:layout_height="@dimen/_12sdp"
-                app:layout_constraintTop_toTopOf="@id/recommendation_cc"
-                app:layout_constraintEnd_toStartOf="@id/recommendation_cc"
-                app:layout_constraintBottom_toTopOf="@id/tv_recommendation"
-                android:rotation="-90"
-                android:layout_marginBottom="@dimen/_30sdp"
-                android:src="@drawable/cocktail"
-                app:tint="?colorOnPrimary"/>
+                app:layout_constraintEnd_toEndOf="@id/recommendation_cc"
+                app:layout_constraintStart_toStartOf="@id/recommendation_cc"
+                app:layout_constraintTop_toBottomOf="@id/recommendation_cc" />
 
             <TextView
                 android:id="@+id/tv_most_popular"
@@ -115,12 +105,12 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/oneplussans"
                 android:text="Most Popular"
+                android:textStyle="bold"
                 android:textSize="@dimen/_15ssp"
                 android:textColor="?colorOnPrimary"
-                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_30sdp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recommendation_cc"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_recommendation"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_popular"
@@ -137,6 +127,7 @@
                 app:layout_constraintTop_toBottomOf="@id/rv_popular"
                 app:layout_constraintStart_toStartOf="@id/tv_most_popular"
                 android:text="Drinks by Ingredient"
+                android:textStyle="bold"
                 android:textColor="?colorOnPrimary"
                 android:fontFamily="@font/oneplussans"
                 android:textSize="@dimen/_15ssp"/>
@@ -146,11 +137,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_drinks_by_ingredient"/>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
