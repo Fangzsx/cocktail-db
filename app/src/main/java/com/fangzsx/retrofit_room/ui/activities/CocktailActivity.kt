@@ -71,7 +71,6 @@ class CocktailActivity : AppCompatActivity() {
                 success()
             }
         }
-
     }
 
     private fun preloadYoutubePlayer(drink: Drink) {

@@ -10,10 +10,5 @@
     <item
         android:icon="@drawable/search"
         android:title="Search"/>
-    <item
-        android:icon="@drawable/about"
-        android:title="About"/>
-
-
 
 </menu>
