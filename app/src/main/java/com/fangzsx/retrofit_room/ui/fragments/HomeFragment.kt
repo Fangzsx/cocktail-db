@@ -1,11 +1,12 @@
 package com.fangzsx.retrofit_room.ui.fragments
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -51,6 +52,25 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        when (requireContext().resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+                binding.switcher.setChecked(true)
+            }
+            Configuration.UI_MODE_NIGHT_YES -> {
+                binding.switcher.setChecked(false)
+            }
+        }
+
+
+        binding.switcher.setOnCheckedChangeListener { checked ->
+            if (checked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
+            }
+        }
 
         getJobsFromVM()
         setUpRandomCocktail()

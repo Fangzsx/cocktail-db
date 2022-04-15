@@ -108,5 +108,7 @@ dependencies {
     //android youtube player
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1'
 
+    //switcher
+    implementation 'io.github.bitvale:switcher:1.1.2'
 
 }

@@ -20,15 +20,16 @@
         android:textSize="@dimen/_20ssp"
         android:layout_margin="@dimen/_10sdp"/>
 
-    <ImageView
-        android:layout_width="@dimen/_25sdp"
-        android:layout_height="0dp"
+    <com.bitvale.switcher.SwitcherX
+        android:id="@+id/switcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:switcher_on_color="@color/yellow"
+        app:switcher_off_color="@color/black"
         app:layout_constraintTop_toTopOf="@id/tv_header"
         app:layout_constraintBottom_toBottomOf="@id/tv_header"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:src="@drawable/settings"
-        app:tint="?colorOnPrimary"/>
+        android:layout_marginEnd="@dimen/_10sdp"/>
 
 
     <androidx.core.widget.NestedScrollView
@@ -56,7 +57,6 @@
                 app:ccll_child_corner_cut_type="oval_inverse"
                 app:ccll_custom_shadow_color="?colorSecondary"
                 app:ccll_custom_shadow_radius="16dp"
-                android:layout_marginTop="@dimen/_30sdp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
