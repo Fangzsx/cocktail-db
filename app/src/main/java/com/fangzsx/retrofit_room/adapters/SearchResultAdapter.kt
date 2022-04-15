@@ -11,6 +11,8 @@ import com.fangzsx.retrofit_room.model.Drink
 
 class SearchResultAdapter : RecyclerView.Adapter<SearchResultAdapter.ResultViewHolder>() {
 
+    var onItemClick : ((Drink) -> Unit)? = null
+
     inner class ResultViewHolder(val binding : CardItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val differCallback = object : DiffUtil.ItemCallback<Drink>(){
@@ -45,6 +47,9 @@ class SearchResultAdapter : RecyclerView.Adapter<SearchResultAdapter.ResultViewH
             tvItem.text = drink.strDrink
         }
 
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(drink)
+        }
     }
 
     override fun getItemCount(): Int {

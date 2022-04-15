@@ -30,6 +30,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun launchFragment(title: String) {
         val transaction = supportFragmentManager.beginTransaction()
+        transaction.setCustomAnimations(
+            R.anim.fade_out,
+            R.anim.fade_out,
+            R.anim.fade_out,
+            R.anim.fade_out
+        )
+
         when(title){
             "Home" -> {
                 transaction.replace(R.id.fragment_host, HomeFragment())
