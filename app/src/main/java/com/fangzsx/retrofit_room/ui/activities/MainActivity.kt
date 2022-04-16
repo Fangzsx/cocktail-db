@@ -9,6 +9,7 @@ import com.fangzsx.retrofit_room.ui.fragments.AboutFragment
 import com.fangzsx.retrofit_room.ui.fragments.FavoritesFragment
 import com.fangzsx.retrofit_room.ui.fragments.HomeFragment
 import com.fangzsx.retrofit_room.ui.fragments.SearchFragment
+import kotlin.system.exitProcess
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +24,8 @@ class MainActivity : AppCompatActivity() {
 
             //change text colors
             .setPositiveButton("YES"){ _,_ ->
-
+                finish()
+                exitProcess(0)
             }
             .setNegativeButton("CANCEL"){ _,_ ->
 
