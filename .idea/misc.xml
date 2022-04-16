@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/drawable/bg_circle.xml" value="0.104" />
         <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/drawable/card_top_end_cut_bg.xml" value="0.1445" />
+        <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/drawable/ic_cross.xml" value="0.1495" />
+        <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/drawable/ic_star_border_black_24dp.xml" value="0.1495" />
         <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/drawable/rv_bg.xml" value="0.1" />
         <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/drawable/search.xml" value="0.1495" />
         <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/drawable/tag_bg.xml" value="0.104" />
@@ -13,6 +15,7 @@
         <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/layout/activity_filter_by_ingredient.xml" value="0.16" />
         <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/layout/activity_main.xml" value="0.15534420289855072" />
         <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/layout/card_item.xml" value="0.75" />
+        <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/layout/exit_dialog.xml" value="0.25" />
         <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/layout/favorite_item.xml" value="1.0" />
         <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/layout/flash_card_layout_back.xml" value="0.5" />
         <entry key="..\:/Users/jygrz/StudioProjects/cocktail-db/app/src/main/res/layout/flash_card_layout_front.xml" value="0.67" />
