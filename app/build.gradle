@@ -111,7 +111,5 @@ dependencies {
     //switcher
     implementation 'io.github.bitvale:switcher:1.1.2'
 
-    //fancy alert dialog
-    implementation 'com.github.Shashank02051997:FancyAlertDialog-Android:0.2'
 
 }
